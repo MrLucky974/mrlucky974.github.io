@@ -42,7 +42,7 @@ div.start-box {
 
 div.button-box {
 	text-align: center;
-	margin-top: 1%;
+	margin-top: 3%;
 }
 
 div.button-box p {
@@ -62,4 +62,16 @@ h1 {
 	text-align: center;
 	font-size: 42px;
 	font-family: 'Open Sans', sans-serif;
+}
+
+.warning-box {
+	text-align: center; 
+	margin-top: 14%;
+	border: 2px solid red;
+}
+
+.warning-box p {
+	color: white;
+	font-size: 18px;
+	font-family: 'Roboto', sans-serif;
 }
