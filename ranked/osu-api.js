@@ -13,6 +13,5 @@ fetch("https://osu.ppy.sh/oauth/token", {
     })
 })
 .then(response => {
-    console.log(response.json());
     return response.json();
 });
