@@ -1,6 +1,6 @@
 fetch("https://osu.ppy.sh/oauth/token", {
     method: 'post',
-    mode: 'cors',
+    mode: 'no-cors',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
