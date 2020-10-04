@@ -1,6 +1,5 @@
-fetch("https://osu.ppy.sh/oauth/token", {
+const user = {
     method: 'post',
-    mode: 'cors',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -11,7 +10,9 @@ fetch("https://osu.ppy.sh/oauth/token", {
         "client_secret": "DuzliUBOmqBJ3NH6ljZLTCatUFN41guAlrnBvJ6h",
         "scope": "public"
     })
-});
-/*.then(response => {
+}
+
+fetch("https://osu.ppy.sh/oauth/token", user);
+.then(response => {
     return response.json();
-});*/
+});
