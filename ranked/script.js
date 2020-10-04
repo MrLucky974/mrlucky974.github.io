@@ -1,4 +1,4 @@
-fetch("https://osu.ppy.sh/oauth/token", {
+/*fetch("https://osu.ppy.sh/oauth/token", {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -14,4 +14,18 @@ fetch("https://osu.ppy.sh/oauth/token", {
 })
 .then(response => {
     return response.json();
-});
+});*/
+
+const url = new URL("https://osu.ppy.sh/api/v2/users/9358042/osu");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+.then(response => response.json())
+.then(json => console.log(json));
