@@ -12,7 +12,6 @@ fetch("https://osu.ppy.sh/oauth/token", {
         "redirect_uri": "https://notarealaddress.local/oauth/osu",
         "code": "code"
     })
-})
-.then(response => {
+}).then(response => {
     return response.json();
 });
