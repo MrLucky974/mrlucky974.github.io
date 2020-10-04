@@ -12,7 +12,7 @@ const user = {
     })
 }
 
-fetch("https://osu.ppy.sh/oauth/token", user);
+fetch("https://osu.ppy.sh/oauth/token", user)
 .then(response => {
     return response.json();
 });
