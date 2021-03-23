@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<header>
+		<title>CRYPTA | Governmental File Protection System</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="style.css">
+		<link rel="icon" type="image/x-icon" href="./images/favicon.png"/>
+		<link rel="shortcut icon" type="image/x-icon" href="./images/favicon.ico"/>
+	</header>
+	<head>
+		<div class="head">
+			<h1>Système d'encryptement et de protections de dossiers CRYPTA</h1>
+		</div>
+	</head>
+	<body onload="init_page();">
+		<div class="folders">
+			<h2 style="text-align: center;">Dossiers top secret</h1>
+			<div class="folder">
+				<button id="0" onclick="open_folder(this.id);">
+					<img id="image" src="images/folder.png">
+					<p id="text">Armes nucléaires</p>
+				</button>
+			</div>
+			<div class="folder">
+				<button id="1" onclick="open_folder(this.id);">
+					<img id="image" src="images/folder.png">
+					<p id="text">Epidémie</p>
+				</button>
+			</div>
+			<div class="folder">
+				<button id="2" onclick="open_folder(this.id);">
+					<img id="image" src="images/folder.png">
+					<p id="text">Escouade d'intervention spéciale</p>
+				</button>
+			</div>
+			<div class="folder">
+				<button id="3" onclick="open_folder(this.id);">
+					<img id="image" src="images/folder.png">
+					<p id="text">Projet Imagine</p>
+				</button>
+			</div>
+			<br>
+			<div class="folder">
+				<button id="4" onclick="open_folder(this.id);">
+					<img id="image" src="images/folder.png">
+					<p id="text">MK-ULTRA</p>
+				</button>
+			</div>
+		</div>
+
+		<div id="crypted-box" class="crypted-box">
+			<p>CE DOSSIER EST ENCRYPTE</p>
+			<div style="color: black;">
+				<label for="password">Entrer le mot de passe: </label>
+    			<input type="password" name="password" id="password" required>
+			</div>
+			<br>
+			<button onclick="openCryptedFile();">Confirmer</button>
+			<button onclick="closeCryptedBox();">Annuler</button>
+		</div>
+
+		<button onclick="back_to_folders();" id="backButton" style="margin-left: 20px;">Go back</button>
+
+		<div class="text-box">
+			<h2 id="document-name">DOCUMENT NAME</h2>
+			<div class="box">
+				<p id="text-holder">
+					C'est un texte.
+					C'est ici que s'affiche le texte.
+				</p>
+			</div>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		var inFolder = -1;
+		var uncrypted = false;
+
+		var backButton = document.getElementById("backButton");
+		var cryptedFileBox = document.getElementById("crypted-box");
+
+		cryptedFileBox.hidden = true;
+
+		function init_page() {
+			backButton.hidden = true;
+			back_to_folders();
+			closeCryptedBox();
+			inFolder = -1;
+			uncrypted = false;
+
+		}
+
+		var files = [
+			["mots-de-passe.txt", "rapport_22_03_1983.txt", "rapport_brice_pécu.txt", "archive_1945.txt"],
+			["sauveur.txt", "message_docteur_kristoff.txt"],
+			["rapport_14_08_1976.txt", "operation_fractale.txt"],
+			["ordre_26_06_1976.txt"],
+			["rapport_13_02_1968.txt", "liste_projets.txt", "affaire_pain_maudit.txt"]
+		];
+
+		var folders = ["Armes nucléaires", "Epidémies", "Escouade d'intervention spéciale", "Projet Imagine", "MK-ULTRA"];
+
+		var text = [["Code du bouton nucléaire : 123456789 <br><br> Mot de passe NordVPN : m@nuleboss_ <br><br> Compte Raid Shadow Legends : <br><br> Identifiant : ManuSlayerDu93 <br> Mot de passe : brigittelesang123 <br><br> Important ! - Mot de passe du dossier Epidémies : J'ai pas le droit de le mettre ici on m'a dit.", "Rapport du 21/03/1983 <br><br> Sujet : Sandwich au jambon et au beurre. <br><br> Rapport : Il s'agit d'un sandwich classique type jambon-beurre parisien, présentant cependant une largeur importante, avec un diamètre estimé à 35 cm pour une longueur de 20 cm. Son observation n'entraîne aucun effet, tant que l'objet est sous cloche hermétique, il est donc supposé que c'est une odeur ou un quelconque agent pathogène non transmissible d'homme à homme qui infecte le sujet exposé, nommé à partir de ce moment. Le processus décrit dans le rapport d'expérience du sujet qui se déclenche dès la première exposition. Le sujet ressentira le besoin impérieux d'avaler l'objet en une seule fois, quels que soient les dommages physiques liés à l'impossibilité évidente de cette action. L'une des extrémités du sandwich est enveloppée d'une serviette en papier classique dans sa matière et son format, mais au lieu d'indiquer le nom d'un quelconque restaurant ou d'une marque de vente, il est écrit en son centre: 'Go ahead, U can Totali swalo Dat' souligné, puis plus bas l'inscription : 'Are we tasty yet?'. Le sujet est donc supposé être lié au groupe d'intérêt pseudo - artistique 'Et Maintenant, On Est Cool ?', bien qu'ayant été retrouvé posé sur une poubelle d'une ruelle de ██████, à côté de laquelle était étendu un sans-abri qui avait visiblement [DONNÉES SUPPRIMÉES] sa propre mâchoire. L'interdiction du 17/08/12 de toute forme d'exposition d'être humain au sujet par mandat du Comité d’Éthique (Courrier 024CE65, disponible aux archives) limite les connaissances actuelles sur la chronologie des effets de l'objet (les tentatives d'expositions animales n'ont montré aucun résultat), il est donc admis que les effets décrits dans le rapport d'expérience ci-dessous, additionnés aux conditions de récupération de l'objet, feront foi.", "Brice Pécu, secrétaire de la défense : <br><br> La frappe sur la zone F a été un succès. Le sable s'est vitrifié sur une surface de 500 kilomètres de diamètre depuis le point d'impact rendant plusieurs de nos satellites aveugles lors de leur passage au dessus de la zone F. Nul doute que cette opération sera remarqué par d'autres nations. Les directives ont été de dire que c'est le regrettable résultat de l’explosion d'une grosse réserve d'un carburant expérimental enfoui sous le désert pour éviter toute perte humaine en cas d’explosion. Bien sûr, il reste le taux de radiation élevé qui pourrait compromettre cette couverture mais cela s’explique aussi par la radioactivité des éléments composant le carburant, d’où son enfouissement. Un des seuls problèmes que nous pouvons relever est l'action du vent qui emporte les radiations vers l'est où ce trouve quelque habitations. Nous prendrons les mesures qui s'impose pour évacuer les habitants le plus vite possible afin d'éviter des morts inutiles.", "La Chine a-t-elle procédé à un essai nucléaire secret ?<br><br> Le département d'État américain affirme que Pékin a procédé à des explosions nucléaires souterraines dans la région du Lob Nor, selon «The Independent».<br>La Chine se livrerait-elle à de petites cachotteries nucléaires à l'heure où la planète se confine ?<br><br>Les États-Unis en sont persuadés. Un nouveau rapport du gouvernement américain assure que l'empire du Milieu aurait procédé à des explosions nucléaires souterraines dans la région du Lob Nor, alors même que le pays assure observer un traité international interdisant de telles pratiques. Le document du Département d'État américain n'apporte toutefois aucune preuve pour étayer ses affirmations. «Le rythme et la manière dont le gouvernement chinois modernise ses stocks sont inquiétants, déstabilisants et illustrent pourquoi la Chine devrait être introduite dans le cadre mondial de contrôle des armements », a justifié un responsable américain sous le couvert de l'anonymat. La Chine, qui disposerait d'environ 300 armes nucléaires, a rejeté à plusieurs reprises la proposition du président américain, arguant que sa force nucléaire est défensive et ne représente aucune menace. <br><br><br>Novembre 1945 : le cri d’alarme d’Einstein sur la bombe atomique<br><br>Trois mois après Hiroshima et Nagasaki, Albert Einstein lance un cri d’alarme sur les dangers de la bombe atomique pour l’avenir de l’humanité.<br>Le titre qui s’étale sur toute la largeur de la première page affirme que 'Les deux tiers du globe peuvent être anéantis par la bombe atomique', comme le rappelle Albert Einstein dans le long article qui suit. Pour lui, 'un seul remède : confier le secret à un gouvernement du monde'. Einstein a 66 ans quand il écrit cet article, trois mois après l’explosion des bombes atomiques d’Hiroshima et de Nagasaki. Le physicien d’origine allemande, Prix Nobel de physique en 1921 (pour ses recherches sur l’effet photoélectrique, et non pour ses travaux sur la relativité, reconnus plus tard), avait fui l’Allemagne nazie en 1933 et obtenu la nationalité américaine en 1940."], ["Nous avons trouvé un sujet qui nous a permis de trouver un début de vaccin, ainsi qu’un traitement. Atteint depuis 14 jours du Covid, son système immunitaire manifestait une lutte efficace contre l'avancée du virus. En ayant extrait certains de ses anticorps et des cellules, enfin bref là n’est pas le sujet, nous avons trouvé un moyen de contrer le virus. Cependant, et malgré toutes nos précautions, il s’est enfuit. <br> Il s’agit de quelqu’un de très intelligent. En comprenant qu’on ne le laisserait pas partir et qu'il serait utilisé comme moyen de pression sur tous les pays du monde , il a trouvé un moyen de nous fausser compagnie pour nous en empêcher. Malheureusement, on ne pourra pas le retrouver. Tout ce que nous savons de lui, et cela ne nous sert à rien, c’est qu’il s’appelle Arjuna. Si quelqu'un à la moindre information, vous devez le mener sur cette page : <a href='https://mrlucky974.github.io/nsi-escape/ending/index.html'>Recherche du 'Sauveur'</a>", "Message vocal du Dr.Kristoff à l'OMS, écrit le 2ème jour d'épidémie de ██████. (Retransmis à l'écrit) <br><br> Avant hier nous avons reçus une dizaine de malades, un jour normal pour notre petit hôpital de campagne. Cependant nous avons aussi un patient présentant des symptômes plus qu' inquiétants. Il est arrivé en fin d'après midi, ne tenant plus debout. Nous lui avons trouvé un lit, et après quelque minutes d'examen, des traces d'auto-mutilation et de nombreuses plaies d'origine non déterminée ont été trouvés. De plus, il semblerait que le patient souffre d'hallucinations, répétant alors de lui enlever des 'choses' qui lui pousseraient sur le corps. Le patient a été retrouvé mort le lendemain matin par une infirmière, étouffé après que sa gorge est enflée sous le coup de ce qui semblait être une allergie. Un jour après cet incident, 3 membres du personnel soignant ayant était au contact de ce patient furent transférés en urgence dans l’hôpital de Carmin-Sur-Mer après que ceux-ci aient manifestés les mêmes hallucinations que le défunt patient. Disposant de chambres de quarantaine, l’hôpital de Carmin-Sur-Mer s'est chargé des premiers examens et ont conclus que cette étrange maladie provenait d'un virus d'origine inconnu mutant très rapidement et contre lequel l'organisme humain ne pouvait rien, le temps de fabrication des anticorps étant trop élevé. A l'heure où j’écris ce message, moi ainsi que tous les membres du personnel hospitalier de l’hôpital Saint-Bernard sont atteints par ce virus. Bien que de petites choses gluantes me cachent la vue j'écrirais tant que mes mains, ou ce qu'il en reste, le pourront. Je demande donc une mise en quarantaine de la zone entière afin que cette épidémie mortelle ne contamine le reste du pays. Je le répète, sécurisez cette zone ou le pays sera condamné !"], ["Rapport de destruction des bases A16, A34, C02, C09, C28, C32 et D40, le 14 Aout 1976 : <br><br> Les sections laboratoires mutinées ont été détruites avec succès, aucun survivant déclaré. Ils ont cependant opposés une résistance farouche, et certains modèles, proches de la perfection, causèrent des dégâts importants aux différentes équipes, et des escadrons entiers ont parfois été décimés. Aucunes autres pertes à déclarer.", "Opération fractale <br><br> Objectif : Reprise du centre de détention #25. <br> Cibles : 36 détenus armés, dont 2 blessé par des gardes avant que ceux-ci soient neutralisés par les prisonniers. <br> 18 otages dont 3 gardes, 10 scientifiques et 5 agents d'entretien. L'opération aura duré 30 minutes et 39 secondes. <br><br> Résultat : libération réussie. 34 détenus éliminés, 2 en état critique, 4 scientifiques exécutés durant l'opération par des détenus sous tension. L'équipe de nettoyage retrouvera les corps des deux (2) agents d'entretien dans un conduit d'aération perforé de balles de calibre 9mm. Les expériences menés sur le site #25 sont suspendus pour une durée indéterminée. Les prisonniers restants ont été transférés vers le site ZERO pour l’exécution de la procédure 361-THOMAUK. Conformément a celle-ci ce message sera classé secret défense et ne sera révélé sous aucun prétexte, si cela venait a arriver, un agent mimétique serait alors chargé de l'élimination de toute personne étant suspecté d'être en possession de ces informations."], ["Ordre d’effacement d’Imagine, le 26 Juin 1976 : <br><br> Le projet est arrêté, telle est la décision du Conseil. A effet immédiat, nous suspendons définitivement les activités des sections et des tests laboratoires. Les différents modèles devront être supprimés, échecs comme réussite, et toutes les preuves effacées. Si les ordres prononcés ne sont pas suivis, Le Conseil utilisera ses moyens pour se charger de l’effacement du projet, vous avez un mois. <br><br><br><br> Mot de passe du dossier Epidémies : password"], ["Rapport du Docteur ████████, le 13 Février 1968 : <br><br> Cela fait maintenant 18 ans que l'équipe Delta dont je fait parti collaborons avec la CIA pour développer des techniques de manipulation mentale. Ce projet vise à pouvoir manipuler les esprits, récolter des informations importantes contre le gré d'une personne ou encore dicter des actions précises afin d'avoir des espions efficaces et indétectables. 18 ans, foutus en l'air ! Des soupçons commencent à grimper du côté des US, et certaines personnes pensent que des expérimentations illégales sont faîtes... Et c'est le cas. Je vais demander aux supérieurs de retirer toute l'équipe du projet avant que le projet ne soit mis à la lumière et qu'un quelconque lien soit fait avec le gouvernement français. On risque gros à continuer, et je ne parle même pas de la santé mentale de l'équipe Delta. Si vous pouviez les voir... Je pensais qu'on allait créer des méthodes pour manipuler l'esprit des gens, pas détruire la santé mentale des membres qui allait les créer ! Tout ça devient vraiment critique et j'espère vraiment qu'on va s'en sortir.", "Liste des sous-projets de MK-ULTRA <br><br> MKNAOMI : <br> But : Stocker plusieurs substances chimiques incapacitantes ou mortelles et développer les moyens de les disséminer. <br> Période de développement : 1950-1960<br>Etat actuel du projet : Abbandonné<br><br>MKOFTEN<br>But : Tester les effets comportementaux et toxicologiques de certaines substances sur les animaux et les humains.<br>Période de développement : [DONNES SUPPRIMES]<br>Etat actuel du projet : Abbandonné<br>Notes supplémentaires : D'après Gordon Thomas ce projet fut initié par le docteur Sidney Gottlieb (chef des services techniques de la CIA) pour explorer le monde de la magie noire et 'maîtriser les forces de l'obscur et démonter l'idée reçue qui veut que les retranchements de l'esprit humain soient hors de portée. Le projet vise à créer un nouvel être humain psychocivilisé.' Des médiums, diseurs de bonne aventure, chiromanciens, spécialistes du démon, sorcières, satanistes et autres praticiens de l'occulte furent recrutés.", "Mission #A2E7P0 : <br><br> Nom : Affaire du pain maudit <br><br> Emplacement : Pont-Saint-Esprit (France) <br><br> Objectif : Faire ingérer à l'insu de la population de l'emplacement ciblé du LSD afin d'étudier ses effets. <br><br> Notes : Plusieurs morts à relever. Expérience non concluante, les effets du LSD sont trop imprévisibles. <br><br> Etat de la suite des expériences : Abbandonné."]]
+
+		function back_to_folders() {
+			for (var i = 0; i < 5; i++) {
+				document.getElementById(i).hidden = false;
+				document.getElementById(i).querySelector("#text").innerHTML = folders[i];
+				document.getElementById(i).querySelector("#image").src='images/folder.png';
+				document.getElementById(i).onclick = function() { open_folder(this.id); };
+			}
+
+			backButton.hidden = true;
+			inFolder = -1;
+			document.getElementById("text-holder").hidden = true;
+			document.getElementById("document-name").hidden = true;
+
+		}
+
+		function open_file(file_id) {
+			document.getElementById("text-holder").innerHTML = text[inFolder][file_id];
+			document.getElementById("document-name").innerHTML = files[inFolder][file_id];
+			document.getElementById("text-holder").hidden = false;
+			document.getElementById("document-name").hidden = false;
+		}
+
+		function open_folder(folder_id) {
+			if (folder_id != 1) {
+
+				for (var i = 0; i < 5; i++) {
+				
+				if (files[folder_id][i] == undefined) {
+					
+					document.getElementById(i).hidden = true;
+
+				}
+
+  				
+  				document.getElementById(i).querySelector("#text").innerHTML = files[folder_id][i];
+  				document.getElementById(i).querySelector("#image").src='images/file.png';
+  				document.getElementById(i).onclick = function() { open_file(this.id); };
+
+				}
+
+				backButton.hidden = false;
+				inFolder = folder_id;
+
+			} else {
+				if (uncrypted == true) {
+					for (var i = 0; i < 5; i++) {
+				
+						if (files[folder_id][i] == undefined) {
+						
+							document.getElementById(i).hidden = true;
+
+						}
+
+						console.log(files[folder_id][i])
+	  				
+	  					document.getElementById(i).querySelector("#text").innerHTML = files[folder_id][i];
+	  					document.getElementById(i).querySelector("#image").src='images/file.png';
+	  					document.getElementById(i).onclick = function() { open_file(this.id); };
+
+					}
+
+						backButton.hidden = false;
+						inFolder = folder_id;
+				} else {
+					cryptedFileBox.hidden = false;
+				}
+			}
+		}
+
+		function openCryptedFile() {
+			var pass = document.getElementById("password");
+			if (uncrypted == false) {
+				if (pass.value == "password") {
+					uncrypted = true;
+					cryptedFileBox.hidden = true;
+				} else {
+					pass.value = ""
+					window.alert("ERROR : Invalid password");
+				}
+			}
+		}
+
+		function closeCryptedBox() {
+			cryptedFileBox.hidden = true;
+		}
+
+	</script>
+
+</html>

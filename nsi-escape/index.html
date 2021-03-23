@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<header>
+		<title>NSI - Introduction</title>
+		<link rel="stylesheet" href="style.css">
+	</header>
+	<body onload="init_timer()">
+		<h1>Escape Game - Le virus</h1>
+		<div class="start-box">
+			<p>Vous êtes un ancien membre de la division informatique de l'armée française. Une pandémie mondiale sévit à l'heure actuelle et des milliers de personnes meurent chaque jour. Votre but et de retrouver une personne, appellé le 'Sauveur', car il est le seul à avoir survécu aux expériences du gouvernement dans l'espoir de créer un vaccin. Vos recherches vous ont tout d'abord mené vers le site officiel du gouvernement.</p>
+		</div>
+		<div class="button-box">
+			<p id="safeTimerDisplay">00:30</p>
+			<button id="timerButt" onclick="start_timer()" class="start-button">Commencer l'aventure</button>
+		</div>
+		<div class="warning-box">
+			<p>ATTENTION ! Cette page ne doit être en aucun cas fermé durant l'entièreté de l'escape game. Ce site contient le script du timer.</p>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		var startingSeconds = 5400;
+
+		var mins = 0;
+		var secs = 0;
+		var timer_interval;
+
+		var timerDisplay = document.getElementById('safeTimerDisplay');
+		var timerButton = document.getElementById('timerButt');
+
+		timerDisplay.hidden = true;
+		
+		function init_timer() {
+			secs = startingSeconds;
+			if (startingSeconds >= 60) {
+				mins = secs / 60;
+				var decimal = mins - Math.floor(mins);
+				mins = Math.round(mins)
+				secs = Math.round(decimal.toFixed(2) * 60);
+			}
+			timerDisplay.innerHTML= zeroPad(mins, 2) + ':' +zeroPad(secs, 2);
+		}
+
+		function start_timer() {
+			window.open("https://mrlucky974.github.io/nsi-escape/gouvernement-francais.gouv/");
+			timerDisplay.hidden = false;
+			timer_interval = setInterval(function(){ timer(); }, 1000);
+			timerButton.onclick = function(){stop_timer();};
+			timerButton.innerHTML = 'Arrêter le timer';
+		}
+
+		function timer() {
+			secs = secs - 1;
+			
+			if (secs <= 0) {
+				if (mins > 0) {
+					mins = mins - 1;
+					secs = 59;
+				} else {
+					stop_timer();
+				}
+			}
+
+			timerDisplay.innerHTML = zeroPad(mins, 2) + ':'+ zeroPad(secs, 2);
+
+		}
+
+		function reset_timer() {
+			stop_timer();
+			init_timer();
+			timerDisplay.hidden = true;
+			timerButton.onclick = function(){start_timer();};
+			timerButton.innerHTML = "Commencer l'aventure";
+		}
+
+		function stop_timer() {
+			clearInterval(timer_interval);
+			timerButton.onclick = function(){reset_timer();};
+			timerButton.innerHTML = 'Redémarrer le timer';
+		}
+
+		function zeroPad(num, places) {
+ 			var zero = places - num.toString().length + 1;
+  			return Array(+(zero > 0 && zero)).join("0") + num;
+	}
+
+	</script>
+
+</html>

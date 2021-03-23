@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
+
+body {
+	background-color:  #c6ced5 ;
+}
+
+a{
+	color: black;
+	text-decoration: none;
+}
+.head {
+	padding: 10px;
+	display: flex;
+   	align-items:center;
+   	background-color: white;
+}
+
+.border {
+	border: 5px solid black;
+	border-radius: 6px;
+	background-color: white;
+	padding: 5px;
+}
+
+.button {
+	-moz-user-select: none; 
+	-webkit-user-select: none; 
+	-ms-user-select:none; 
+	user-select:none;
+	-o-user-select:none;
+
+	background-color: white;
+  	border: 2px solid black;
+  	color: black;
+  	padding: 14px 48px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+  	font-size: 16px;
+  	margin: 4px 2px;
+  	cursor: pointer;
+  	border-radius: 9px;
+  	font-family: 'Roboto', sans-serif;
+  transition-duration: 0.3s;
+}
+
+.button:hover {
+  background-color: white;
+  color: black;
+  border: 4px solid black;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.head h1 {
+	padding-left: 10px;
+	font-size: 26px;
+	font-family: 'Roboto', sans-serif;
+}
+
+.body {
+	text-align: center;
+	width: 75%;
+	height: 100vh;
+	background-image: linear-gradient(#2396e6, #c5dbea  );
+	border: 10px solid white;
+	display: table;
+	margin: 0 auto;
+}
+
+.element {
+	text-align: center;
+	border: 5px solid white;
+	background-color:  #c6d9e6 ;
+	padding: 10px;
+	width: 65%;
+	display: inline-block;
+	margin: 10px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.enonce{
+    text-align: left;
+}
+
+.article-seizure {
+	font-family: 'Open Sans', sans-serif;
+}

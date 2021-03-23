@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<header>
+		<title>CRYPTA | Governmental File Protection System</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="style.css">
+	</header>
+	<body>
+	        <div class="ui">
+	                <div class="folders">
+                        <h1 style="text-align: center;">Se connecter</h1>
+                        <label for="Pseudo">Identifiant :</label>
+                        <input type="text" id="identifiant" required>
+                        <br>
+                        <label for="mdp">Mot de passe :</label>
+                        <input type="password" id="mdp" required>
+                        <br>
+                        <button type="button" onclick="submit()">Se connecter</button>
+                    </div>
+            </div>
+	</body>
+	<script type="text/javascript">
+		function submit() {
+			var identifiant = document.getElementById("identifiant").value;
+			var password = document.getElementById("mdp").value;
+			if (identifiant == "Martel") {
+				if (password == "Tabouret") {
+					window.open("https://mrlucky974.github.io/nsi-escape/crypta-france.org/");
+				} else {
+					alert("Le mot de passe ou l'identifiant n'existe pas ou n'est pas correct.");
+				}
+			} else {
+					alert("Le mot de passe ou l'identifiant n'existe pas ou n'est pas correct.");
+				}
+		}
+	</script>
+</html>

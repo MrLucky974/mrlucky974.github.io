@@ -1,0 +1,84 @@
+body {
+	background-color: black;
+	color: white;
+}
+
+.folders {
+	border: 8px solid white;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.folder {
+	float: left;
+	text-align: center;
+}
+
+.ui	{
+	position: absolute;
+	top: 35%;
+	left: 40%;
+}
+
+form, label, input{
+	text-align: center;
+	margin: 10px 10px 10px 10px;
+}
+
+.folder button {
+	-moz-user-select: none; 
+	-webkit-user-select: none; 
+	-ms-user-select:none; 
+	user-select:none;
+	-o-user-select:none;
+
+	text-decoration: none;
+	border: none;
+	background-color: black;
+	cursor: pointer;
+}
+
+.folder img {
+	width: 32px;
+}
+
+.folder p {
+	font-size: 10px;
+	color: white;
+}
+
+.head {
+	border: 6px solid white;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+
+.head h1 {
+	text-align: center;
+}
+
+.text-box {
+	float: right;
+	border: 6px solid white;
+	width: 650px;
+	height: 100vh;
+	/*overflow: auto;*/
+}
+
+.text-box h2 {
+	text-align: center;
+}
+
+.box {
+	margin: 15px;
+	border: 6px solid white;
+	width: 94%;
+	height: 85%;
+	overflow: auto;
+	background-color: white;
+}
+
+.box p {
+	color: black;
+	text-align: center;
+}
