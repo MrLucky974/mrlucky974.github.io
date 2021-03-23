@@ -7,7 +7,7 @@ function getHash()
         var name = hash.replace('article=', '');
         alert(name);
         
-        var requestFile = 'data/portfolio/'+name+'.js';
+        var requestFile = 'luckius/data/portfolio/'+name+'.js';
 
         console.log(readJSONFile(requestFile));
     
