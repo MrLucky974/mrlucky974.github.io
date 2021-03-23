@@ -7,13 +7,18 @@ function getHash()
         var name = hash.replace('article=', '');
         alert(name);
         
-        var requestFile = '../data/portfolio/'+name+'.js';
+        var requestFile = 'data/portfolio/'+name+'.js';
 
-        fetch(requestFile)
+        console.log(readJSONFile(requestFile));
     
     } else {
         
         window.location = '';
     
     }
+}
+
+function readJSONFile(path)
+{
+    return fetch(path);
 }
