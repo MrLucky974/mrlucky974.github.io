@@ -7,7 +7,7 @@ function getHash()
         var name = hash.replace('article=', '');
         alert(name);
         
-        var requestFile = 'luckius/data/portfolio/'+name+'.js';
+        var requestFile = 'https://mrlucky974.github.io/luckius/data/portfolio/unigeon.js';
 
         console.log(readJSONFile(requestFile));
     
