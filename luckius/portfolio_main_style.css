@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+body {
+    background-color: rgb(20, 19, 26);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.home {
+    color: aliceblue;
+    text-decoration: none;
+}
+
+.home:hover {
+    animation-name: change-color;
+    animation-duration: 2.25s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+
+@keyframes change-color {
+    0%   {color: rgb(182, 0, 91);}
+    25%  {color: brown;}
+    50%  {color: coral;}
+    75%  {color: darkgoldenrod;}
+    100% {color: darkorchid;}
+}
+
+.head {
+    background-color: rgb(10, 10, 14);
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.project {
+    position: relative;
+    top: 110px;
+    text-align: center;
+    color: aliceblue;
+}
+
+.title {
+    margin-left: 15px;
+    color: aliceblue;
+}
+
+.articles {
+    padding-top: 20px;
+    margin: auto;
+    width: 50%;
+}
+
+.item {
+    width: 230px;
+    height: 230px;
+    margin-left: 10px;
+    margin-top: 100px;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.background {
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    transition: all .5s;
+}
+
+.item:hover .background,
+.item:focus .background {
+    transform: scale(1.2);
+    transition: all .5s;
+    cursor: pointer;
+}
+
+.bottom {
+    display: block;
+    color: white;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(22, 21, 39);
+    cursor: pointer;
+}
