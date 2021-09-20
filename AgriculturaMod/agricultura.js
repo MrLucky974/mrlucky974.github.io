@@ -40,7 +40,9 @@ G.AddData({
             category:'agriculture',
         });
 
-        G.getDict('grass').res['gather']['seed']=0.05;
+        G.getDict('grass').res['gather']['seed']=0.10;
+
+        G.contextNames['farming']='Farming';
 
         /* Units */
         new G.Unit({
@@ -55,23 +57,15 @@ G.AddData({
             modes: {
                 'off': G.MODE_OFF,
                 //'any':{name:'Any',icon:[], desc:'Farm using any random [seed] you find. You may not get optimal results.',use:{'worker':1, 'knapped tools':1, 'seed':10}},
-                'wheat':{name:'Farm Wheat',icon:[], desc:'Farm [wheat] using [seed] you find.',use:{'worker':1, 'knapped tools':1, 'seed':10}},
-                /*'wheat': {
-                    name:'Plant wheat',
-                    desc:'Turn 1 [seed] into 1 [wheat].',
-                    //req:{'hot sauce preparing':true},
-                    use:{
-                        'ground stone tools':1
-                    }
-                }*/
+                'wheat':{name:'Farm Wheat', icon:[], desc:'Produce [wheat] using [seed]s.', use:{'worker':1, 'knapped tools':1, 'seed':10}},
             },
             effects: [
-                {type:'gather', context:'gather', what:{'herb':5},max:30, notMode:'off'},
-                //{type:'gather',context:'gather',amount:10,max:30,mode:'any'},
-                {type:'gather',context:'gather',what:{'Wheat':50},max:30,mode:'wheat'},
+                //{type:'gather', context:'gather', what:{'herb':5}, max:30, notMode:'off'},
+                //{type:'gather', context:'gather', amount:10, max:30, mode:'any'},
+                {type:'gather', context:'farming', what:{'wheat':1}, amount:10, max:30, mode:'wheat'},
             ],
             req: {/*'agriculture': true*/},
-            category: 'crafting'
+            category: 'production'
         });
 
         /* Techs */
@@ -82,8 +76,7 @@ G.AddData({
             icon:[],
             cost:{'insight':15},
             req:{'building':true},
-            effects:[
-            ],
+            effects:[],
         });*/
 
     }
