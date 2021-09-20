@@ -3,7 +3,7 @@ G.AddData({
     author:'Luckius_',
     desc:'A mod that adds agriculture and a lot of other things related to food.',
     engineVersion:1,
-    manifest: 'https://mrlucky974.github.io/AgriculturaMod/agriculturaModManifest.js',
+    manifest: 0,
     requires:['Default dataset*'],
     /*sheets:{},*/
 
