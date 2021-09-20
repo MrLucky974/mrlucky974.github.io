@@ -57,8 +57,8 @@ G.AddData({
             category:'agriculture',
         });
 
-        G.getDict('grass').res['gather']['seed']=0.05;
-        G.getDict('grass').res['gather']['root']=0.05;
+        G.getDict('grass').res['gather']['seed']=0.01;
+        G.getDict('grass').res['gather']['root']=0.015;
 
         G.contextNames['farming']='Farming';
 
@@ -70,17 +70,20 @@ G.AddData({
             icon: [],
             cost:{'archaic building materials':50},
             use:{'worker':1, 'land': 1},
-		    upkeep:{'water':0.5},
+		    upkeep:{'water':0.1},
             gizmos: true,
             modes: {
                 'off': G.MODE_OFF,
-                'any':{name:'Any',icon:[], desc:'Farm using any random [seed] or [root] you have. You may not get optimal results.', use:{'knapped tools':1, 'seed':10, 'root':10}},
-                'wheat':{name:'Farm Wheat', icon:[], desc:'Produce [wheat] using [seed]s.', use:{'knapped tools':1, 'seed':10}},
+                'any':{name:'Any', icon:[], desc:'Farm using any random [seed] or [root] you have. You may not get optimal results.', use:{'knapped tools':1, 'seed':5, 'root':5}},
+                'wheat':{name:'Farm wheat', icon:[], desc:'Produce [wheat] using [seed]s.', use:{'knapped tools':1, 'seed':10}},
+                'parsnip':{name:'Farm wheat', icon:[], desc:'Produce [parsnip] using [root]s.', use:{'knapped tools':1, 'root':10}},
             },
             effects: [
                 //{type:'gather', context:'gather', what:{'herb':5}, max:30, notMode:'off'},
-                {type:'gather', context:'farming', what:{'wheat':0.1, 'parsnip':0.2}, amount:5, mode:'any'},
-                {type:'gather', context:'farming', what:{'wheat':1}, amount:5, mode:'wheat'},
+                {type:'gather', context:'farming', what:{'wheat':0.1, 'parsnip':0.2}, amount:1, max:3, mode:'any'},
+                {type:'gather', context:'farming', what:{'wheat':1}, amount:1, max:5, mode:'wheat'},
+                {type:'gather', context:'farming', what:{'parsnip':1}, amount:1, max:5, mode:'parsnip'},
+                {type:'mult', value:2.0, req:{'harvest rituals':'on'}}
             ],
             req: {/*'agriculture': true*/},
             category: 'production'
