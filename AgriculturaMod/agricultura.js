@@ -45,10 +45,18 @@ G.AddData({
         /* Units */
         new G.Unit({
             name: 'farmfield',
-            desc: '@plants crops and give all sorts of food',
+            desc: '@plants [seed]s and give all sorts of food',
             icon: [],
-            cost: {'land': 1},
-            use:  {'worker': 1},
+            use:{
+                'worker': 1
+            },
+		    staff:{
+                'knapped tools':1
+            },
+		    upkeep:{
+                'water':1
+            },
+            gizmos: true,
             modes: {
                 'off': G.MODE_OFF, 
                 'wheat': {
@@ -63,9 +71,8 @@ G.AddData({
             effects: [
                 {type:'convert', from:{'seed':1}, into:{'wheat':1}, every:3, mode:'wheat'}
             ],
-            gizmos: true,
             req: {/*'agriculture': true*/},
-            category: 'storage'
+            category: 'crafting'
         });
 
         /* Techs */
