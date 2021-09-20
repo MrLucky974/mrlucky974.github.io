@@ -58,6 +58,7 @@ G.AddData({
         });
 
         G.getDict('grass').res['gather']['seed']=0.10;
+        G.getDict('grass').res['gather']['root']=0.10;
 
         G.contextNames['farming']='Farming';
 
