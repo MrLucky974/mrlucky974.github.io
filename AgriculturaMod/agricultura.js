@@ -5,7 +5,9 @@ G.AddData({
     engineVersion:1,
     manifest: 0,
     requires:['Default dataset*'],
-    /*sheets:{},*/
+    sheets:{
+
+    },
 
     func:function() {
 
@@ -45,25 +47,30 @@ G.AddData({
             name: 'farmfield',
             desc: '@plants crops and give all sorts of food',
             icon: [],
-            cost: {},
-            use:  {'land': 1, 'worker': 1},
-            modes: {'off': G.MODE_OFF},
-            effects: [],
+            cost: {'land': 1},
+            use:  {'worker': 1},
+            modes: {
+                'off': G.MODE_OFF, 
+                'wheat': {
+                    name:'Plant wheat',
+                    desc:'Turn 1 [seed] into 1 [wheat].',
+                    //req:{'hot sauce preparing':true},
+                    use:{
+                        'ground stone tools':1
+                    }
+                }
+            },
+            effects: [
+                {type:'convert', from:{'seed':1}, into:{'wheat':1}, every:3, mode:'wheat'}
+            ],
             gizmos: true,
-            req: {'agriculture': true},
+            req: {/*'agriculture': true*/},
             category: 'storage'
         });
 
-        G.getDict('farmfield').modes['wheat']={
-            name:'Plant wheat',
-            desc:'Turn 1 [seed] into 1 [wheat].',
-            //req:{'hot sauce preparing':true},
-            use:{'knapped tools':1}
-        };
-
         /* Techs */
 
-        new G.Tech({
+        /*new G.Tech({
             name:'agriculture',
             desc:'@unlocks [farmfield]s<>',
             icon:[],
@@ -71,7 +78,7 @@ G.AddData({
             req:{'building':true},
             effects:[
             ],
-        });
+        });*/
 
     }
 
