@@ -40,7 +40,7 @@ G.AddData({
             category:'agriculture',
         });
 
-        G.getDict('grass').res['gather']['seeds']=1;
+        G.getDict('grass').res['gather']['seed']=1;
 
         /* Units */
         new G.Unit({
