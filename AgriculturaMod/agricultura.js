@@ -92,9 +92,9 @@ G.AddData({
             },
             effects: [
                 {type:'gather', context:'gather', what:{'herb':50}, amount:5, max:30, mode:'off'},
-                {type:'gather', context:'farming', what:{'wheat':0.1, 'parsnip':0.2}, amount:1, max:3, mode:'any'},
-                {type:'gather', context:'farming', what:{'wheat':1}, amount:7, max:10, mode:'cereals'},
-                {type:'gather', context:'farming', what:{'parsnip':1}, amount:7, max:10, mode:'vegetables'},
+                {type:'gather', context:'farming', what:{'vegetable':0.1, 'cereal':0.2}, amount:1, max:3, mode:'any'},
+                {type:'gather', context:'farming', what:{'vegetable':1}, amount:7, max:10, mode:'cereals'},
+                {type:'gather', context:'farming', what:{'cereal':1}, amount:7, max:10, mode:'vegetables'},
                 {type:'mult', value:2.0, req:{'harvest rituals':'on'}}
             ],
             req: {/*'agriculture': true*/},
