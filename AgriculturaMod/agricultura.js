@@ -57,6 +57,15 @@ G.AddData({
             partOf:'food',
         });
 
+        new G.Res({
+            name:'flour',
+            desc:'[flour] is produced from the conversion of [cereal]s in the [mill].',
+            icon:[],
+            turnToByContext:{'eat':{'health':0.005,'happiness':-0.05}, 'decay':{'spoiled food':0.1}},
+            partOf:'food',
+            category:'agriculture',
+        });
+
         /* Goods */
 
         G.getDict('grass').res['gather']['seed']=0.0015;
@@ -66,10 +75,10 @@ G.AddData({
 
         new G.Goods({
             name:'wild vegetables',
-            desc:'[wild vegetables, Wild vegetables] are a good source of [root]s;',
+            desc:'[wild vegetables, Wild vegetables] are a good source of [root]s and of course, [vegetable]s;',
             icon:[],
             res:{
-                'gather':{'root':5},
+                'gather':{'root':5, 'vegetable':3},
             },
             mult:10,
         });
@@ -78,7 +87,7 @@ G.AddData({
         
         new G.Unit({
             name: 'farmland',
-            desc: '@',
+            desc: '@A [farmland] is build to plant various crops to produce a substainable stock of food, mainly [vegetable]s and [cereal]s.',
             icon: [],
             cost:{'archaic building materials':0},
             use:{'worker':1, 'land': 1},
@@ -92,10 +101,29 @@ G.AddData({
             },
             effects: [
                 {type:'gather', context:'gather', what:{'herb':50}, amount:1, max:50, mode:'off'},
-                {type:'gather', context:'farming', what:{'vegetable':2.5, 'cereal':2.5}, amount:5, max:15, mode:'any'},
-                {type:'gather', context:'farming', what:{'cereal':5}, amount:5, max:40, mode:'cereals'},
-                {type:'gather', context:'farming', what:{'vegetable':5}, amount:5, max:40, mode:'vegetables'},
+                {type:'gather', context:'farming', what:{'vegetable':2.5, 'cereal':2.5, 'seed':1.75, 'root':1.75}, amount:1, mode:'any'},
+                {type:'gather', context:'farming', what:{'cereal':5, 'seed':2.5}, amount:1, mode:'cereals'},
+                {type:'gather', context:'farming', what:{'vegetable':5, 'root':2.5}, amount:1, mode:'vegetables'},
                 {type:'mult', value:1.7, req:{'harvest rituals':'on'}}
+            ],
+            req: {/*'agriculture': true*/},
+            category: 'production'
+        });
+
+        new G.Unit({
+            name: 'mill',
+            desc: '@A truly wonderful building used to produce [flour] from [cereal]s like wheat.',
+            icon: [],
+            cost:{'basic building materials':0},
+            use:{'land': 1},
+		    upkeep:{},
+            gizmos: true,
+            modes: {
+                'off': G.MODE_OFF,
+                'flour':{name:'Produce flour', icon:[], desc:'Create [flour] from [cereal]s.', use:{}},
+            },
+            effects: [
+                {type:'convert', from:{'cereal':10}, into:{'flour':5}, every:5, mode:'flour'},
             ],
             req: {/*'agriculture': true*/},
             category: 'production'
@@ -104,11 +132,29 @@ G.AddData({
         /* Techs */
 
         new G.Tech({
+            name:'wheel',
+            desc:'@the power of the wheel unlocks a whole new dimension<>',
+            icon:[],
+            cost:{'insight':10},
+            req:{'tool-making':true},
+            effects:[],
+        });
+
+        new G.Tech({
+            name:'milling',
+            desc:'@unlocks the [mill]<>',
+            icon:[],
+            cost:{'insight':10},
+            req:{'wheel':true, 'building':true},
+            effects:[],
+        });
+
+        new G.Tech({
             name:'agriculture',
             desc:'@unlocks [farmfield]s<>',
             icon:[],
             cost:{'insight':15},
-            req:{'building':true},
+            req:{'sedentism':true},
             effects:[],
         });
 
