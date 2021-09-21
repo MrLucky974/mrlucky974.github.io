@@ -30,12 +30,12 @@ G.AddData({
             upkeep:{'coin':0.2},
             gizmos: true,
             modes: {
-                'heal':{name:'Heal', icon:[], desc:''},
-                'medicine':{name:'Make medicine', icon:[3,5], desc:''},
+                'heal':{name:'Heal', icon:[], desc:'Heal the [sick] and the [wounded] with [medicine] and 1 [insight].'},
+                'medicine':{name:'Make medicine', icon:[3,5], desc:'Produce 7 [medicine] from 3 [water] and 10 [herb]s.'},
             },
             effects:[
-                {type:'convert', from:{'sick':1,'medicine':2.5, 'spirituality':1}, into:{'adult':1}, chance:1/2, every:1.5, mode:'heal'},
-                {type:'convert', from:{'wounded':1, 'medicine':2.5, 'spirituality':1}, into:{'adult':1}, chance:1/3, every:5, mode:'heal'},
+                {type:'convert', from:{'sick':1, 'medicine':2.5, 'insight':1}, into:{'adult':1}, chance:1/2, every:1.5, mode:'heal'},
+                {type:'convert', from:{'wounded':1, 'medicine':2.5, 'insight':1}, into:{'adult':1}, chance:1/3, every:5, mode:'heal'},
                 {type:'convert', from:{'water':3, 'herb':10}, into:{'medicine':7}, every:3, mode:'medicine'},
             ],
             req:{'healing':true, 'ritualism':true},
