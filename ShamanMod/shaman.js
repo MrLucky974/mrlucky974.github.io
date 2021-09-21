@@ -12,6 +12,7 @@ G.AddData({
     func:function() {
 
         //New modes for the healer
+        G.getDict('healer')['gizmos'] = true;
         G.getDict('healer').modes['heal']={name:'Heal', desc:'The [healer] heals the [sick] and [wounded].', req:{}};
         G.getDict('healer').effects[0]['mode'] = 'heal';
         G.getDict('healer').effects[1]['mode'] = 'heal';
