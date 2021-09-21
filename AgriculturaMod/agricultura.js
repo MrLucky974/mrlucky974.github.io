@@ -20,6 +20,12 @@ G.AddData({
             side: ['seed', 'root']
         };
 
+        G.resCategories['ingredients'] = {
+            name: 'Ingredients',
+            base: [],
+            side: []
+        };
+
         /* Ressources */
         
         new G.Res({
@@ -61,10 +67,36 @@ G.AddData({
             name:'flour',
             desc:'[flour] is produced from the conversion of [cereal]s in the [mill].',
             icon:[],
-            turnToByContext:{'eat':{'health':0.005,'happiness':-0.05}, 'decay':{'spoiled food':0.1}},
+            turnToByContext:{'eat':{'health':0.0025,'happiness':-0.05}, 'decay':{'flour':0.9, 'spoiled food':0.1}},
             partOf:'food',
-            category:'agriculture',
+            category:'ingredients',
         });
+
+        new G.Res({
+            name:'dough',
+            desc:'[dough] is made by an [artisan] from [flour] and [water].',
+            icon:[],
+            turnToByContext:{'eat':{'health':0.05,'happiness':-0.007}, 'decay':{'dough':0.1, 'spoiled food':0.9}},
+            partOf:'food',
+            category:'ingredients',
+        });
+
+        new G.Res({
+            name:'bread',
+            desc:'A delicious [bread, bread loaf] fresh (hot?) out of the oven, brings hapiness and replenish a lot of health.',
+            icon:[],
+            turnToByContext:{'eat':{'health':2.0, 'happiness':0.5}, 'decay':{'bread':0.4, 'spoiled food':0.6}},
+            partOf:'food',
+            category:'food',
+        });
+
+        //Dough recipe from the artisan
+        G.getDict('artisan').modes['dough']={name:'Make dough', desc:'Turn 3 [flour] and 2 [water]s into 4 [dough].', req:{}, use:{'knapped tools':1}};
+        G.getDict('artisan').effects.push({type:'convert',from:{'flour':3, 'water':2}, into:{'dough':4}, every:3, mode:'dough'});
+
+        //Bread recipe from the furnace
+        G.getDict('furnace').modes['bread']={name:'Cook bread', desc:'Turn 1 [dough] into a loaf of [bread].', req:{}, use:{'worker':1}};
+        G.getDict('furnace').effects.push({type:'convert',from:{'dough':1}, into:{'bread':1}, every:3, mode:'bread'});
 
         /* Goods */
 
