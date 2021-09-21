@@ -24,7 +24,7 @@ G.AddData({
         
         new G.Res({
             name:'vegetable',
-            desc:'[vegetable, Vegetables]',
+            desc:'[vegetable, Vegetables] are grown by planting [root]s found in nature.',
             icon:[],
             turnToByContext:{'eat':{'health':0.02,'happiness':0.02},'decay':{'spoiled food':1}},
             partOf:'food',
@@ -33,7 +33,7 @@ G.AddData({
 
         new G.Res({
             name:'cereal',
-            desc:'[cereal, Cereals]',
+            desc:'[cereal, Cereals] are grown by planting [seed]s found in grass.',
             icon:[],
             turnToByContext:{'eat':{'health':0.005,'happiness':-0.03}, 'decay':{'spoiled food':0.3}},
             partOf:'food',
