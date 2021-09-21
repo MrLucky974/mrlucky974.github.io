@@ -124,16 +124,13 @@ G.AddData({
             },
             effects: [
                 {type:'gather', context:'gather', what:{'herb':50}, amount:1, max:50, mode:'off'},
-                {type:'gather', context:'farming', what:{'vegetable':2.5, 'cereal':2.5, 'seed':1.75, 'root':1.75}, amount:1, mode:'any'},
-                {type:'gather', context:'farming', what:{'cereal':5, 'seed':2.5}, amount:1, mode:'cereals'},
-                {type:'gather', context:'farming', what:{'vegetable':5, 'root':2.5}, amount:1, mode:'vegetables'},
+                {type:'gather', context:'farming', what:{'vegetable':2.5, 'cereal':2.5, 'seed':1.75, 'root':1.75}, amount:5, max:8, mode:'any'},
+                {type:'gather', context:'farming', what:{'cereal':5, 'seed':2.5}, amount:5, max:8, mode:'cereals'},
+                {type:'gather', context:'farming', what:{'vegetable':5, 'root':2.5}, amount:5, max:8, mode:'vegetables'},
                 {type:'mult', value:1.7, req:{'harvest rituals':'on'}}
             ],
             req: {/*'agriculture': true*/},
             category: 'production',
-            tick:function(me, tick){
-                console.log("farmland");
-            }
         });
 
         new G.Unit({
