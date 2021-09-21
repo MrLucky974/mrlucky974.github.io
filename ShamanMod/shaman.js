@@ -32,8 +32,8 @@ G.AddData({
             modes: {
                 'heal':{name:'Heal', icon:[], desc:'Heal the [sick] and the [wounded] with [medicine] and 1 [insight].'},
                 'medicine':{name:'Make medicine', icon:[3,5], desc:'Produce 7 [medicine] from 3 [water] and 10 [herb]s.'},
-                'youth':{name:'Cure elders', icon:[4,3], desc:'The [shaman] have a very small chance to cure [elder]s, them becoming [adult]s again.<>Use 20 [medicine], 1 [insight] & 3 [faith].'},
-                'necromancy':{name:'Ressurect corpse', icon:[14,1], desc:'Using [necromancy], a [shaman] can ressurect [corpse, dead] people back to life, making a [zombie].<>Use 1 [faith].', req:{'necromancy':true}},
+                'youth':{name:'Cure elders', icon:[5,3], desc:'The [shaman] have a very small chance to cure [elder]s, them becoming [adult]s again.<>Use 20 [medicine], 1 [insight] & 3 [faith].'},
+                'necromancy':{name:'Ressurect corpse', icon:[0,0,'shamanIconSheet'], desc:'Using [necromancy], a [shaman] can ressurect [corpse, dead] people back to life, making a [zombie].<>Use 1 [faith].', req:{'necromancy':true}},
             },
             effects:[
                 {type:'convert', from:{'sick':1, 'medicine':7, 'insight':1}, into:{'adult':1}, chance:1/2, every:1.5, mode:'heal'},
