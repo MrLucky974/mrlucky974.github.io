@@ -35,7 +35,7 @@ G.AddData({
             name:'cereal',
             desc:'[cereal, Cereals]',
             icon:[],
-            turnToByContext:{'eat':{'health':0.005,'happiness':-0.03},'decay':{'spoiled food':0.3}},
+            turnToByContext:{'eat':{'health':0.005,'happiness':-0.03}, 'decay':{'spoiled food':0.3}},
             partOf:'food',
             category:'food',
         });
@@ -46,21 +46,21 @@ G.AddData({
             desc:'[seed]s grow fruits and cereals.',
             icon:[],
             turnToByContext:{'eating':{'health':0.005,'happiness':-0.03}},
-            category:'agriculture',
+            partOf:'food',
         });
 
         new G.Res({
             name:'root',
             desc:'[root]s are found in the wild, you can grow a lot of different vegetables.',
             icon:[],
-            turnToByContext:{'eating':{'health':0.005,'happiness':-0.005}},
-            category:'agriculture',
+            turnToByContext:{'eating':{'health':0.005,'happiness':-0.005}, 'decay':{'spoiled food':0.7}},
+            partOf:'food',
         });
 
         /* Goods */
 
-        G.getDict('grass').res['gather']['seed']=0.01;
-        G.getDict('grass').res['gather']['root']=0.015;
+        G.getDict('grass').res['gather']['seed']=0.0015;
+        G.getDict('grass').res['gather']['root']=0.002;
         
         G.contextNames['farming']='Farming';
 
@@ -87,8 +87,8 @@ G.AddData({
             modes: {
                 'off': G.MODE_OFF,
                 'any':{name:'Any', icon:[], desc:'Farm using any random [seed] or [root] you have. You may not get optimal results.', use:{'knapped tools':1}},
-                'vegetables':{name:'Farm vegetables', icon:[], desc:'Produce [vegetable]s using [root]s.', use:{'knapped tools':1}, upkeep:{'root':10}},
-                'cereals':{name:'Farm cereals', icon:[], desc:'Produce [cereal]s using [seed]s.', use:{'knapped tools':1}, upkeep:{'seed':10}},
+                'vegetables':{name:'Farm vegetables', icon:[], desc:'Produce [vegetable]s using [root]s.', use:{'knapped tools':1}, whenGathered:{'root':10}},
+                'cereals':{name:'Farm cereals', icon:[], desc:'Produce [cereal]s using [seed]s.', use:{'knapped tools':1}, whenGathered:{'seed':10}},
             },
             effects: [
                 {type:'gather', context:'gather', what:{'herb':50}, amount:5, max:30, mode:'off'},
