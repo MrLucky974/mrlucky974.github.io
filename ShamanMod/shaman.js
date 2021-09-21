@@ -6,7 +6,7 @@ G.AddData({
     manifest: 0,
     requires:['Default dataset*'],
     sheets:{
-        'shamanIconSheet': 'https://mrlucky974.github.io/ShamanMod/shamanIconSheet.png'
+        'shamanIconSheet': 'https://mrlucky974.github.io/ShamanMod/iconSheet.png'
     },
 
     func:function() {
