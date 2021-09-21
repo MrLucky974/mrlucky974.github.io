@@ -87,15 +87,15 @@ G.AddData({
             modes: {
                 'off': G.MODE_OFF,
                 'any':{name:'Any', icon:[], desc:'Farm using any random [seed] or [root] you have. You may not get optimal results.', use:{'knapped tools':1}},
-                'vegetables':{name:'Farm vegetables', icon:[], desc:'Produce [vegetable]s using [root]s.', use:{'knapped tools':1}, whenGathered:{'root':10}},
-                'cereals':{name:'Farm cereals', icon:[], desc:'Produce [cereal]s using [seed]s.', use:{'knapped tools':1}, whenGathered:{'seed':10}},
+                'vegetables':{name:'Farm vegetables', icon:[], desc:'Produce [vegetable]s using [root]s.', use:{'knapped tools':1}},
+                'cereals':{name:'Farm cereals', icon:[], desc:'Produce [cereal]s using [seed]s.', use:{'knapped tools':1}},
             },
             effects: [
-                {type:'gather', context:'gather', what:{'herb':50}, amount:5, max:30, mode:'off'},
-                {type:'gather', context:'farming', what:{'vegetable':0.1, 'cereal':0.2}, amount:1, max:3, mode:'any'},
-                {type:'gather', context:'farming', what:{'vegetable':1}, amount:7, max:10, mode:'cereals'},
-                {type:'gather', context:'farming', what:{'cereal':1}, amount:7, max:10, mode:'vegetables'},
-                {type:'mult', value:2.0, req:{'harvest rituals':'on'}}
+                {type:'gather', context:'gather', what:{'herb':50}, amount:1, max:3, mode:'off'},
+                {type:'gather', context:'farming', what:{'vegetable':5, 'cereal':5}, amount:1, max:3, mode:'any'},
+                {type:'gather', context:'farming', what:{'cereal':20}, amount:1, max:3, mode:'cereals'},
+                {type:'gather', context:'farming', what:{'vegetable':20}, amount:1, max:3, mode:'vegetables'},
+                {type:'mult', value:1.7, req:{'harvest rituals':'on'}}
             ],
             req: {/*'agriculture': true*/},
             category: 'production'
