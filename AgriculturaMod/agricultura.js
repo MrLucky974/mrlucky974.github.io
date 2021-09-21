@@ -91,10 +91,10 @@ G.AddData({
                 'cereals':{name:'Farm cereals', icon:[], desc:'Produce [cereal]s using [seed]s.', use:{'knapped tools':1}},
             },
             effects: [
-                {type:'gather', context:'gather', what:{'herb':50}, amount:1, max:3, mode:'off'},
-                {type:'gather', context:'farming', what:{'vegetable':1, 'cereal':1}, amount:5, max:15, mode:'any'},
-                {type:'gather', context:'farming', what:{'cereal':1}, amount:5, max:40, mode:'cereals'},
-                {type:'gather', context:'farming', what:{'vegetable':1}, amount:5, max:40, mode:'vegetables'},
+                {type:'gather', context:'gather', what:{'herb':50}, amount:1, max:50, mode:'off'},
+                {type:'gather', context:'farming', what:{'vegetable':2.5, 'cereal':2.5}, amount:5, max:15, mode:'any'},
+                {type:'gather', context:'farming', what:{'cereal':5}, amount:5, max:40, mode:'cereals'},
+                {type:'gather', context:'farming', what:{'vegetable':5}, amount:5, max:40, mode:'vegetables'},
                 {type:'mult', value:1.7, req:{'harvest rituals':'on'}}
             ],
             req: {/*'agriculture': true*/},
