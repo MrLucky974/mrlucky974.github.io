@@ -130,7 +130,10 @@ G.AddData({
                 {type:'mult', value:1.7, req:{'harvest rituals':'on'}}
             ],
             req: {/*'agriculture': true*/},
-            category: 'production'
+            category: 'production',
+            tick:function(me, tick){
+                console.log("farmland");
+            }
         });
 
         new G.Unit({
@@ -148,7 +151,7 @@ G.AddData({
             effects: [
                 {type:'convert', from:{'cereal':10}, into:{'flour':5}, every:5, mode:'flour'},
             ],
-            req: {/*'agriculture': true*/},
+            req: {'milling': true},
             category: 'production'
         });
 
@@ -174,7 +177,7 @@ G.AddData({
 
         new G.Tech({
             name:'agriculture',
-            desc:'@unlocks [farmfield]s<>',
+            desc:'@unlocks [farmland]s<>',
             icon:[],
             cost:{'insight':15},
             req:{'sedentism':true},
