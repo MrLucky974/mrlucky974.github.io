@@ -81,15 +81,6 @@ G.AddData({
             category:'ingredients',
         });
 
-        new G.Res({
-            name:'bread',
-            desc:'A delicious [bread, bread loaf] fresh (hot?) out of the oven, brings hapiness and replenish a lot of health.',
-            icon:[],
-            turnToByContext:{'eat':{'health':2.0, 'happiness':0.5}, 'decay':{'bread':0.4, 'spoiled food':0.6}},
-            partOf:'food',
-            category:'food',
-        });
-
         //Dough recipe from the artisan
         G.getDict('artisan').modes['dough']={name:'Make dough', desc:'Turn 3 [flour] and 2 [water]s into 4 [dough].', req:{}, use:{'knapped tools':1}};
         G.getDict('artisan').effects.push({type:'convert',from:{'flour':3, 'water':2}, into:{'dough':4}, every:3, mode:'dough'});
