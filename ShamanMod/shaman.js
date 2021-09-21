@@ -6,7 +6,7 @@ G.AddData({
     manifest: 0,
     requires:['Default dataset*'],
     sheets:{
-
+        'shamanIconSheet': 'https://mrlucky974.github.io/ShamanMod/shamanIconSheet.png'
     },
 
     func:function() {
@@ -50,7 +50,7 @@ G.AddData({
         new G.Tech({
             name:'necromancy',
             desc:'@unlocks new options for [shaman]s<>',
-            icon:[14,1],
+            icon:[0,0,'shamanIconSheet'],
             cost:{'insight':10, 'faith':1},
             req:{'ritualism':true, 'burial':true, 'healing':true},
             effects:[
@@ -65,7 +65,7 @@ G.AddData({
             visible:true,
             partOf:'worker',
             category:'demog',
-            icon:[4,3],
+            icon:[1,0,'shamanIconSheet'],
             tick:function(me,tick)
 		    {
                 
