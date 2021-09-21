@@ -79,18 +79,36 @@ G.AddData({
                         var toConsume=me.amount*1;
                         var consumeMult=1;
                         toConsume=randomFloor(toConsume*consumeMult);
-                        var consumed=G.lose('food',toConsume,'zombie eating');
+                        var consumed=G.lose('raw meat', toConsume, 'zombie eating');
                         G.gain('happiness', -consumed*0.5, 'zombie eating');
 
                         var lacking=toConsume-consumed;
-                        if (lacking>0) 
+                        if (lacking>0) //Are we out of raw meat?
                         {
 
-                            var died = toConsume;
-                            G.gain('corpse', died, 'zombie starvation');
-                            G.gain('happiness',died*5,'zombie starvation');
-                            G.getRes('died this year').amount+=died;
-                            if (died>0) G.Message({type:'bad',mergeId:'diedStarvation',textFunc:function(args){return B(args.died)+' '+(args.died==1?'zombie':'zombies')+' died from starvation.';},args:{died:died},icon:[5,4]});
+                            lacking=lacking-G.lose('spoiled food',lacking,'zombie eating');
+
+                            if (lacking > 0) //Are we also out of spoiled food?
+                            {
+
+                                var humansEaten = Math.min(2, lacking);
+                                lacking=lacking-G.lose('adult', humansEaten, 'zombie eating')*3;
+                                G.getRes('died this year').amount+=humansEaten;
+                                if (humansEaten>0) G.Message({type:'bad', mergeId:'diedEaten', textFunc:function(args){return B(args.died)+' '+(args.died==1?'person':'people')+' died eaten by zombies.';}, args:{died:humansEaten}, icon:[5,4]});
+
+                                if (lacking > 0) //Humans are not enough?
+                                {
+                                    
+                                    var died = toConsume;
+                                    G.gain('corpse', died, 'zombie starvation');
+                                    G.lose('zombie', died, 'zombie starvation');
+                                    G.gain('happiness',died*5,'zombie starvation');
+                                    G.getRes('died this year').amount+=died;
+                                    if (died>0) G.Message({type:'bad', mergeId:'diedStarvation', textFunc:function(args){return B(args.died)+' '+(args.died==1?'zombie':'zombies')+' died from starvation.';}, args:{died:died}, icon:[5,4]});
+                                
+                                }
+
+                            }
                         
                         }
                     
