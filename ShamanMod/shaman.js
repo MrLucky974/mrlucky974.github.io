@@ -94,7 +94,7 @@ G.AddData({
                                 var humansEaten = Math.min(2, lacking);
                                 lacking=lacking-G.lose('adult', humansEaten, 'zombie eating')*3;
                                 G.getRes('died this year').amount+=humansEaten;
-                                if (humansEaten>0) G.Message({type:'bad', mergeId:'diedEaten', textFunc:function(args){return B(args.died)+' '+(args.died==1?'person':'people')+' died eaten by zombies.';}, args:{died:humansEaten}, icon:[5,4]});
+                                //if (humansEaten>0) G.Message({type:'bad', mergeId:'diedEaten', textFunc:function(args){return B(args.died)+' '+(args.died==1?'person':'people')+' died eaten by zombies.';}, args:{died:humansEaten}, icon:[5,4]});
 
                                 if (lacking > 0) //Humans are not enough?
                                 {
