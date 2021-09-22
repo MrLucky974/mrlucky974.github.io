@@ -76,20 +76,20 @@ G.AddData({
                         var toConsume=me.amount*1;
                         var consumeMult=1;
                         toConsume=randomFloor(toConsume*consumeMult);
-                        var consumed=G.lose('raw meat', toConsume, 'zombie eating');
-                        G.lose('happiness', consumed*0.5, 'zombie eating');
+                        var consumed=G.lose('meat', toConsume, 'zombie consumption');
+                        G.lose('happiness', consumed*0.5, 'zombie consumption');
 
                         var lacking=toConsume-consumed;
                         if (lacking>0) //Are we out of raw meat?
                         {
-                            lacking=lacking-G.lose('spoiled food',lacking,'zombie eating');
+                            lacking=lacking-G.lose('spoiled food', lacking, 'zombie consumption');
 
                             if (lacking > 0) //Are we also out of spoiled food?
                             {
                                 var died = toConsume;
-                                G.gain('corpse', died, 'zombie starvation');
-                                G.lose('zombie', died, 'zombie starvation');
-                                G.gain('happiness',died*2.5,'zombie starvation');
+                                G.gain('corpse', died, 'zombie death');
+                                G.lose('zombie', died, 'zombie death');
+                                G.gain('happiness',died*2.5,'zombie death');
                                 G.getRes('died this year').amount+=died;
                                 
                                 //var humansEaten = Math.min(2, lacking);
