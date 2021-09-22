@@ -196,8 +196,8 @@ G.AddData({
         /* Goods */
 
         ///"World" generation
-        G.getDict('grass').res['gather']['seed']=0.5; //Chance to gather seeds on grass
-        G.getDict('grass').res['gather']['root']=0.75; //Chance to gather roots on grass
+        G.getDict('grass').res['gather']['seed']=0.75; //Chance to gather seeds on grass
+        G.getDict('grass').res['gather']['root']=1.25; //Chance to gather roots on grass
         
         G.contextNames['farming']='Farming'; //New production context (seperates the units from the others)
 
