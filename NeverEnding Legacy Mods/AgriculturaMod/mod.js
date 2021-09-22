@@ -56,25 +56,37 @@ G.AddData({
             partOf:'food',
             tick:function(me,tick)
 		    {
-                var farmlandUnit = G.getUnitByName('farmland');
-                var farmlandCount = G.getUnitAmount('farmland');
-
-                var farmlandMode = farmlandUnit.mode.id;
-
-                if (farmlandCount > 0)
+                if (me.amount > 0)
                 {
-                    switch (farmlandMode) {
-                        case 'any':
-                            var toConsume = 3.5 * farmlandCount;
-                            if (toConsume > me.amount) G.setUnitMode(farmlandUnit, farmlandUnit.unit.modes.off)
-                            else G.lose(me.name, toConsume, 'agriculture');
-                            break;
+                    if (tick % 2 == 0)
+                    {
+                        var farmlandUnit = G.getUnitByName('farmland');
+                        var farmlandCount = G.getUnitAmount('farmland');
 
-                        case 'cereals':
-                            var count = 15 * farmlandCount;
-                            if (toConsume > me.amount) G.setUnitMode(farmlandUnit, farmlandUnit.unit.modes.off)
-                            else G.lose('seed', count, 'agriculture');
-                            break;
+                        var farmlandMode = farmlandUnit.mode.id;
+
+                        if (farmlandCount > 0)
+                        {
+                            switch (farmlandMode) {
+                                case 'any':
+                                    var toConsume = 3.5 * farmlandCount;
+                                    if (toConsume > me.amount) {
+                                        G.setUnitMode(farmlandUnit, farmlandUnit.unit.modes.off);
+                                    } else {
+                                        G.lose(me.name, toConsume, 'agriculture');
+                                    } 
+                                    break;
+
+                                case 'cereals':
+                                    var toConsume = 15 * farmlandCount;
+                                    if (toConsume > me.amount) {
+                                        G.setUnitMode(farmlandUnit, farmlandUnit.unit.modes.off);
+                                    } else {
+                                        G.lose(me.name, toConsume, 'agriculture');
+                                    }
+                                    break;
+                            }
+                        }
                     }
                 }
             }
@@ -89,25 +101,37 @@ G.AddData({
             partOf:'food',
             tick:function(me,tick)
 		    {
-                var farmlandUnit = G.getUnitByName('farmland');
-                var farmlandCount = G.getUnitAmount('farmland');
-
-                var farmlandMode = farmlandUnit.mode.id;
-
-                if (farmlandCount > 0)
+                if (me.amount > 0)
                 {
-                    switch (farmlandMode) {
-                        case 'any':
-                            var toConsume = 3.5 * farmlandCount;
-                            if (toConsume > me.amount) G.setUnitMode(farmlandUnit, farmlandUnit.unit.modes.off)
-                            else G.lose(me.name, toConsume, 'agriculture');
-                            break;
+                    if (tick % 2 == 0)
+                    {
+                        var farmlandUnit = G.getUnitByName('farmland');
+                        var farmlandCount = G.getUnitAmount('farmland');
 
-                        case 'cereals':
-                            var count = 15 * farmlandCount;
-                            if (toConsume > me.amount) G.setUnitMode(farmlandUnit, farmlandUnit.unit.modes.off)
-                            else G.lose('seed', count, 'agriculture');
-                            break;
+                        var farmlandMode = farmlandUnit.mode.id;
+
+                        if (farmlandCount > 0)
+                        {
+                            switch (farmlandMode) {
+                                case 'any':
+                                    var toConsume = 3.5 * farmlandCount;
+                                    if (toConsume > me.amount) {
+                                        G.setUnitMode(farmlandUnit, farmlandUnit.unit.modes.off);
+                                    } else {
+                                        G.lose(me.name, toConsume, 'agriculture');
+                                    } 
+                                    break;
+
+                                case 'vegetables':
+                                    var toConsume = 15 * farmlandCount;
+                                    if (toConsume > me.amount) {
+                                        G.setUnitMode(farmlandUnit, farmlandUnit.unit.modes.off);
+                                    } else {
+                                        G.lose(me.name, toConsume, 'agriculture');
+                                    }
+                                    break;
+                            }
+                        }
                     }
                 }
             }
