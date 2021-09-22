@@ -1,7 +1,7 @@
 G.AddData({
-    name:'Shaman',
+    name:'Shamans',
     author:'Luckius_',
-    desc:'A mod that adds upgrades to healing by adding a new unit and ressources.',
+    desc:'A mod that adds a new unit and new gameplay elements.',
     engineVersion:1,
     manifest: 0,
     requires:['Default dataset*'],
@@ -14,7 +14,7 @@ G.AddData({
         new G.Res({
             name:'medicine',
             desc:'[medicine] helps to heal the [sick] and the [wounded].',
-            icon:[],
+            icon:[6,4],
             //turnToByContext:{'decay':{'medicine':0.3,}},
             //partOf:'food',
             category:'food',
@@ -60,43 +60,44 @@ G.AddData({
 
         new G.Res({
             name:'zombie',
-            desc:'[zombie,Zombies] are [corpse]s bringed back to life by a [shaman] using [necromancy].//Zombies make are an addition to your [worker,workforce].',
+            desc:'[zombie,Zombies] are [corpse]s bringed back to life by a [shaman] using [necromancy].//Zombies make are an addition to your [worker,workforce].<>Those who play with the power of life and death should be warned that one day themselves they could be the toy of their own grief...',
             //startWith:5,
             visible:true,
             partOf:'worker',
             category:'demog',
             icon:[1,0,'shamanIconSheet'],
             tick:function(me,tick)
-		    {
-                
+		    {  
                 if (me.amount>0)
 			    {
-                    
                     if (tick%3==0)
-				    {
-                        
+				    {           
                         //eat food
                         var toConsume=me.amount*1;
                         var consumeMult=1;
                         toConsume=randomFloor(toConsume*consumeMult);
                         var consumed=G.lose('raw meat', toConsume, 'zombie eating');
-                        G.gain('happiness', -consumed*0.5, 'zombie eating');
+                        G.lose('happiness', consumed*0.5, 'zombie eating');
 
                         var lacking=toConsume-consumed;
                         if (lacking>0) //Are we out of raw meat?
                         {
-
                             lacking=lacking-G.lose('spoiled food',lacking,'zombie eating');
 
                             if (lacking > 0) //Are we also out of spoiled food?
                             {
-
-                                var humansEaten = Math.min(2, lacking);
-                                lacking=lacking-G.lose('adult', humansEaten, 'zombie eating')*3;
-                                G.getRes('died this year').amount+=humansEaten;
+                                var died = toConsume;
+                                G.gain('corpse', died, 'zombie starvation');
+                                G.lose('zombie', died, 'zombie starvation');
+                                G.gain('happiness',died*2.5,'zombie starvation');
+                                G.getRes('died this year').amount+=died;
+                                
+                                //var humansEaten = Math.min(2, lacking);
+                                //lacking=lacking-G.lose('adult', humansEaten, 'zombie eating')*3;
+                                //G.getRes('died this year').amount+=humansEaten;
                                 //if (humansEaten>0) G.Message({type:'bad', mergeId:'diedEaten', textFunc:function(args){return B(args.died)+' '+(args.died==1?'person':'people')+' died eaten by zombies.';}, args:{died:humansEaten}, icon:[5,4]});
 
-                                if (lacking > 0) //Humans are not enough?
+                                /*if (lacking > 0) //Humans are not enough?
                                 {
                                     
                                     var died = toConsume;
@@ -106,16 +107,11 @@ G.AddData({
                                     G.getRes('died this year').amount+=died;
                                     if (died>0) G.Message({type:'bad', mergeId:'diedStarvation', textFunc:function(args){return B(args.died)+' '+(args.died==1?'zombie':'zombies')+' died from starvation.';}, args:{died:died}, icon:[5,4]});
                                 
-                                }
-
-                            }
-                        
-                        }
-                    
-                    }
-                
-                }
-            
+                                }*/
+                            } 
+                        }  
+                    } 
+                }   
             }
         
         });
