@@ -76,38 +76,30 @@ G.AddData({
                         var toConsume=me.amount*1;
                         var consumeMult=1;
                         toConsume=randomFloor(toConsume*consumeMult);
-                        var consumed=G.lose('meat', toConsume, 'zombie consumption');
-                        G.lose('happiness', consumed*0.5, 'zombie consumption');
+                        var consumed=G.lose('meat', toConsume, 'eating (zombie)');
+                        G.lose('happiness', consumed*0.5, 'eating (zombie)');
 
                         var lacking=toConsume-consumed;
                         if (lacking>0) //Are we out of raw meat?
                         {
-                            lacking=lacking-G.lose('spoiled food', lacking*5, 'zombie consumption')/5;
+                            lacking=lacking-G.lose('spoiled food', lacking*50, 'eating (zombie)')/50;
 
                             if (lacking > 0) //Are we also out of spoiled food?
-                            {
-                                var died = toConsume;
-                                G.gain('corpse', died, 'zombie death');
-                                G.lose('zombie', died, 'zombie death');
-                                G.gain('happiness',died*2.5,'zombie death');
-                                G.getRes('died this year').amount+=died;
-                                
-                                //var humansEaten = Math.min(2, lacking);
-                                //lacking=lacking-G.lose('adult', humansEaten, 'zombie eating')*3;
-                                //G.getRes('died this year').amount+=humansEaten;
-                                //if (humansEaten>0) G.Message({type:'bad', mergeId:'diedEaten', textFunc:function(args){return B(args.died)+' '+(args.died==1?'person':'people')+' died eaten by zombies.';}, args:{died:humansEaten}, icon:[5,4]});
+                            {   
+                                var humansEaten = Math.min(2, lacking);
+                                lacking=lacking-G.lose('adult', humansEaten, 'eating (zombie)')*5;
+                                G.getRes('died this year').amount+=humansEaten;
+                                if (humansEaten>0) G.Message({type:'bad', mergeId:'diedEaten', textFunc:function(args){return B(args.died)+' '+(args.died==1?'person':'people')+' died eaten by zombies.';}, args:{died:humansEaten}, icon:[5,4]});
 
-                                /*if (lacking > 0) //Humans are not enough?
-                                {
-                                    
+                                if (lacking > 0) //Humans are not enough?
+                                {         
                                     var died = toConsume;
-                                    G.gain('corpse', died, 'zombie starvation');
-                                    G.lose('zombie', died, 'zombie starvation');
-                                    G.gain('happiness',died*5,'zombie starvation');
+                                    G.gain('corpse', died, 'starvation (zombie)');
+                                    G.lose('zombie', died, 'starvation (zombie)');
+                                    G.gain('happiness',died*5,'starvation (zombie)');
                                     G.getRes('died this year').amount+=died;
-                                    if (died>0) G.Message({type:'bad', mergeId:'diedStarvation', textFunc:function(args){return B(args.died)+' '+(args.died==1?'zombie':'zombies')+' died from starvation.';}, args:{died:died}, icon:[5,4]});
-                                
-                                }*/
+                                    if (died>0) G.Message({type:'bad', mergeId:'diedStarvation', textFunc:function(args){return B(args.died)+' '+(args.died==1?'zombie':'zombies')+' died from starvation.';}, args:{died:died}, icon:[5,4]});         
+                                }
                             } 
                         }  
                     } 
