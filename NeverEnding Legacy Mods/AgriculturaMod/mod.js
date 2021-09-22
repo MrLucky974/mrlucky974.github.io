@@ -69,7 +69,7 @@ G.AddData({
                         {
                             switch (farmlandMode) {
                                 case 'any':
-                                    var toConsume = 3.5 * farmlandCount;
+                                    var toConsume = 3.5 * farmlandCount / 2;
                                     if (toConsume > me.amount) {
                                         G.setUnitMode(farmlandUnit, farmlandUnit.unit.modes.off);
                                     } else {
@@ -78,7 +78,7 @@ G.AddData({
                                     break;
 
                                 case 'cereals':
-                                    var toConsume = 15 * farmlandCount;
+                                    var toConsume = 15 * farmlandCount / 2;
                                     if (toConsume > me.amount) {
                                         G.setUnitMode(farmlandUnit, farmlandUnit.unit.modes.off);
                                     } else {
@@ -114,7 +114,7 @@ G.AddData({
                         {
                             switch (farmlandMode) {
                                 case 'any':
-                                    var toConsume = 3.5 * farmlandCount;
+                                    var toConsume = 3.5 * farmlandCount / 2;
                                     if (toConsume > me.amount) {
                                         G.setUnitMode(farmlandUnit, farmlandUnit.unit.modes.off);
                                     } else {
@@ -123,7 +123,7 @@ G.AddData({
                                     break;
 
                                 case 'vegetables':
-                                    var toConsume = 15 * farmlandCount;
+                                    var toConsume = 15 * farmlandCount / 2;
                                     if (toConsume > me.amount) {
                                         G.setUnitMode(farmlandUnit, farmlandUnit.unit.modes.off);
                                     } else {
