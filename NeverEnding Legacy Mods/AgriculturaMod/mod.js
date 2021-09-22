@@ -217,7 +217,7 @@ G.AddData({
         new G.Unit({
             name: 'farmland',
             desc: '@A [farmland] is build to plant various crops to produce a substainable stock of food, mainly [vegetable]s and [cereal]s.',
-            icon: [],
+            icon: [14,4],
             cost:{'archaic building materials':100, 'stone tools':1},
             use:{'worker':1, 'land': 1},
 		    upkeep:{'water':0.35},
