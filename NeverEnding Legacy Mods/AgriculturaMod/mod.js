@@ -52,7 +52,7 @@ G.AddData({
             name:'seed',
             desc:'[seed]s grow fruits and cereals.',
             icon:[],
-            turnToByContext:{'eating':{'health':0.005,'happiness':-0.03}}, //Seeds can't spoil
+            turnToByContext:{'eating':{'health':0.005,'happiness':-0.03}, decay:{'seed':1}}, //Seeds can't spoil
             partOf:'food',
             tick:function(me,tick)
 		    {
