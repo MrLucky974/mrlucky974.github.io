@@ -1,7 +1,7 @@
 G.AddData({
     name:'Shaman',
     author:'Luckius_',
-    desc:'A mod that adds upgrades to healing.',
+    desc:'A mod that adds upgrades to healing by adding a new unit and ressources.',
     engineVersion:1,
     manifest: 0,
     requires:['Default dataset*'],
@@ -22,7 +22,7 @@ G.AddData({
 
         new G.Unit({
             name:'shaman',
-            desc:'@uses [medicine]s to heal the [sick] and the [wounded] with a greater success rate than the [healer]<>Produce [medicine] by combining [herb]s secret powers and the magic of spirits.<>The [shaman] knows the secrets of special plants that make illness stay away by transforming them.',
+            desc:'@uses [medicine]s to heal the [sick] and the [wounded] with a greater success rate than the [healer].<>Produce [medicine] by combining [herb]s secret powers and the magic of spirits using [faith].<>',
             icon:[23,3],
             cost:{},
             use:{'worker':1},
@@ -30,8 +30,8 @@ G.AddData({
             upkeep:{'coin':0.2},
             gizmos: true,
             modes: {
-                'heal':{name:'Heal', icon:[], desc:'Heal the [sick] and the [wounded] with [medicine] and 1 [insight].'},
-                'medicine':{name:'Make medicine', icon:[3,5], desc:'Produce 7 [medicine] from 3 [water] and 10 [herb]s.'},
+                'heal':{name:'Heal', icon:[4,5], desc:'Heal the [sick] and the [wounded] with [medicine] and 1 [insight].'},
+                'medicine':{name:'Make medicine', icon:[6,4], desc:'Produce 7 [medicine] from 3 [water] and 10 [herb]s.'},
                 'youth':{name:'Cure elders', icon:[5,3], desc:'The [shaman] have a very small chance to cure [elder]s, them becoming [adult]s again.<>Use 20 [medicine], 1 [insight] & 3 [faith].'},
                 'necromancy':{name:'Ressurect corpse', icon:[0,0,'shamanIconSheet'], desc:'Using [necromancy], a [shaman] can ressurect [corpse, dead] people back to life, making a [zombie].<>Use 1 [faith].', req:{'necromancy':true}},
             },
