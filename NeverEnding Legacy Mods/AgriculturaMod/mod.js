@@ -224,9 +224,9 @@ G.AddData({
             gizmos: true,
             modes: {
                 'off': G.MODE_OFF,
-                'any':{name:'Any', icon:[], desc:'Farm using any random [seed] or [root] you have. You may not get optimal results.', use:{'knapped tools':1}},
-                'vegetables':{name:'Farm vegetables', icon:[], desc:'Produce [vegetable]s using [root]s.', use:{'knapped tools':1}},
-                'cereals':{name:'Farm cereals', icon:[], desc:'Produce [cereal]s using [seed]s.', use:{'knapped tools':1}},
+                'any':{name:'Any', icon:[14,4], desc:'Farm using any random [seed] or [root] you have. You may not get optimal results.', use:{'knapped tools':1}},
+                'vegetables':{name:'Farm vegetables', icon:[14,4], desc:'Produce [vegetable]s using [root]s.', use:{'knapped tools':1}},
+                'cereals':{name:'Farm cereals', icon:[14,4], desc:'Produce [cereal]s using [seed]s.', use:{'knapped tools':1}},
             },
             effects: [
                 {type:'gather', what:{'herb':5}, chance:1/3, mode:'off'},
