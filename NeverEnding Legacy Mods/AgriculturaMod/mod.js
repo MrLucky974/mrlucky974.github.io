@@ -54,6 +54,30 @@ G.AddData({
             icon:[],
             turnToByContext:{'eating':{'health':0.005,'happiness':-0.03}}, //Seeds can't spoil
             partOf:'food',
+            tick:function(me,tick)
+		    {
+                var farmlandUnit = G.getUnitByName('farmland');
+                var farmlandCount = G.getUnitAmount('farmland');
+
+                var farmlandMode = farmlandUnit.mode.id;
+
+                if (farmlandCount > 0)
+                {
+                    switch (farmlandMode) {
+                        case 'any':
+                            var toConsume = 3.5 * farmlandCount;
+                            if (toConsume > me.amount) G.setUnitMode(G.getUnitByName('farmland'), G.getUnit('farmland').modes.off)
+                            else G.lose(me.name, toConsume, 'agriculture');
+                            break;
+
+                        case 'cereals':
+                            var count = 15 * farmlandCount;
+                            if (toConsume > me.amount) G.setUnitMode(G.getUnitByName('farmland'), G.getUnit('farmland').modes.off)
+                            else G.lose('seed', count, 'agriculture');
+                            break;
+                    }
+                }
+            }
         });
 
         //Roots are used in farmlands to produce vegetables
@@ -63,6 +87,28 @@ G.AddData({
             icon:[],
             turnToByContext:{'eating':{'health':0.005,'happiness':-0.005}, 'decay':{'spoiled food':0.7}},
             partOf:'food',
+            tick:function(me,tick)
+		    {
+                var farmlandUnit = G.getUnitByName('farmland');
+                var farmlandCount = G.getUnitAmount('farmland');
+
+                var farmlandMode = farmlandUnit.mode.id;
+
+                if (farmlandCount > 0)
+                {
+                    switch (farmlandMode) {
+                        case 'any':
+                            var toConsume = 3.5 * farmlandCount;
+                            G.lose(me.name, toConsume, 'agriculture');
+                            break;
+
+                        case 'vegetables':
+                            var count = 15 * farmlandCount;
+                            G.lose(me.name, count, 'agriculture');
+                            break;
+                    }
+                }
+            }
         });
 
         //Flour : new ingredient, used to make dough
@@ -174,7 +220,7 @@ G.AddData({
                 
                 {type:'mult', value:1.7, req:{'harvest rituals':'on'}}
             ],
-            req: {/*'agriculture': true*/},
+            req: {'agriculture': true},
             category: 'production',
         });
 
