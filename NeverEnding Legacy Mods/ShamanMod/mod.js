@@ -70,7 +70,7 @@ G.AddData({
 		    {  
                 if (me.amount>0)
 			    {
-                    if (tick%3==0)
+                    if (tick%7==0)
 				    {           
                         //eat food
                         var toConsume=me.amount*1;
