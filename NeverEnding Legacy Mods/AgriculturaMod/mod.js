@@ -58,7 +58,7 @@ G.AddData({
 		    {
                 if (me.amount > 0)
                 {
-                    if (tick % 2 == 0)
+                    if (tick % 5 == 0)
                     {
                         var farmlandUnit = G.getUnitByName('farmland');
                         var farmlandCount = G.getUnitAmount('farmland');
@@ -97,13 +97,13 @@ G.AddData({
             name:'root',
             desc:'[root]s are found in the wild, you can grow a lot of different vegetables.',
             icon:[],
-            turnToByContext:{'eating':{'health':0.005,'happiness':-0.005}, 'decay':{'spoiled food':0.7}},
+            turnToByContext:{'eating':{'health':0.005,'happiness':-0.005}, 'decay':{'root':0.4, 'spoiled food':0.6}},
             partOf:'food',
             tick:function(me,tick)
 		    {
                 if (me.amount > 0)
                 {
-                    if (tick % 2 == 0)
+                    if (tick % 5 == 0)
                     {
                         var farmlandUnit = G.getUnitByName('farmland');
                         var farmlandCount = G.getUnitAmount('farmland');
@@ -196,8 +196,8 @@ G.AddData({
         /* Goods */
 
         ///"World" generation
-        G.getDict('grass').res['gather']['seed']=0.0025; //Chance to gather seeds on grass
-        G.getDict('grass').res['gather']['root']=0.003; //Chance to gather roots on grass
+        G.getDict('grass').res['gather']['seed']=0.05; //Chance to gather seeds on grass
+        G.getDict('grass').res['gather']['root']=0.075; //Chance to gather roots on grass
         
         G.contextNames['farming']='Farming'; //New production context (seperates the units from the others)
 
