@@ -31,12 +31,12 @@ G.AddData({
 
         new G.Tech({
             name:'cultivation',
-            desc:'@[philosopher]s produce 75% more [insight].@provides 50 [culture]<>Thoughts are shared, and the [population] becomes more and more cultured as they learn to think as a society.',
+            desc:'@[philosopher]s produce 75% more [insight].@provides 50 [inspiration].<>Thoughts are shared, and the [population] becomes more and more cultured as they learn to think as a society.',
             icon:[6,5],
             cost:{'culture':10,'insight':20},
             req:{'symbolism':true},
             effects:[
-                {type:'provide res',what:{'culture':50}},
+                {type:'provide res',what:{'inspiration':50}},
             ],
         });
 
