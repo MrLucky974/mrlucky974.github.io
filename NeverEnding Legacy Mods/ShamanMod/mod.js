@@ -82,7 +82,7 @@ G.AddData({
                         var lacking=toConsume-consumed;
                         if (lacking>0) //Are we out of raw meat?
                         {
-                            lacking=lacking-G.lose('spoiled food', lacking, 'zombie consumption');
+                            lacking=lacking-G.lose('spoiled food', lacking*5, 'zombie consumption')/5;
 
                             if (lacking > 0) //Are we also out of spoiled food?
                             {
