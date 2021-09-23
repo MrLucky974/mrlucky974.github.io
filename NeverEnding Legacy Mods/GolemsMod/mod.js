@@ -48,7 +48,7 @@ G.AddData({
                     if (tick%1==0) 
                     {
                         var golemAmount = M.golems.length;
-                        if (golemAmount > me.amount) 
+                        if (golemAmount < me.amount)
                         {
                             var randMaxLife = getRandomInt(182, 365)
                             new M.GolemData(randMaxLife);
