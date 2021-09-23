@@ -22,7 +22,7 @@ G.AddData({
         //Golems category
         G.resCategories['golems'] = {
             name: 'Golems',
-            base: ['clay golem', 'mud golem'],
+            base: [],
             side: ['golems']
         };
 
@@ -33,7 +33,7 @@ G.AddData({
             //startWith:5,
             icon:[0,0],
             visible:true,
-            partOf:'worker',
+            partOf:'worker'
         });
 
         //Mud golem ressource
@@ -43,7 +43,7 @@ G.AddData({
             //startWith:5,
             visible:false,
             partOf:'golems',
-            //category:'golems',
+            category:'golems',
             icon:[0,0],
             tick:function(me,tick)
 		    {  
@@ -87,7 +87,7 @@ G.AddData({
             //startWith:5,
             visible:false,
             partOf:'golems',
-            //category:'golems',
+            category:'golems',
             icon:[0,0],
             tick:function(me,tick)
 		    {  
@@ -129,7 +129,7 @@ G.AddData({
 
         GM = {}; //Short term for golem mod
 
-        GM.golems = []
+        GM.golems = [];
 
         GM.getGolems=function(type) {
             var golems = [];
@@ -137,7 +137,7 @@ G.AddData({
                 if (golem.type == type) golems.push(golem);
             });
             return golems;
-        }
+        };
 
         GM.GolemData=function(data) {
             this.type='';
@@ -146,7 +146,7 @@ G.AddData({
 
             for (var i in data) this[i]=data[i];
             GM.golems.push(this);
-        }
+        };
 
         let currentTick = 0;
 
@@ -173,7 +173,7 @@ G.AddData({
             }
 
             currentTick++;
-        }
+        };
 
         setInterval(GM.update, 1); //Loop update every 1 ms
 
