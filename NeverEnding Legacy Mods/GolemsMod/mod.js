@@ -83,7 +83,6 @@ G.AddData({
             //startWith:5,
             visible:true,
             partOf:'worker',
-            category:'golems',
         });
 
         //Mud golem ressource
