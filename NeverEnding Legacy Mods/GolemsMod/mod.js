@@ -22,18 +22,18 @@ G.AddData({
         //Golems category
         G.resCategories['creatures'] = {
             name: 'Creatures',
-            base: [],
+            base: ['golem'],
             side: []
         };
 
         //Mud golem ressource
         new G.Res({
-            name:'mud golem',
-            desc:'[mud golem] made from [mud].//[mud golem] make an addition to your [worker,Workforce].//[mud golem] dies after a certain amount of time.',
+            name:'golem',
+            desc:'[golem] made from [mud] or [clay].//[mud golem] make an addition to your [worker,Workforce].//[golem] dies after a certain amount of time.',
             //startWith:5,
             //visible:true,
             partOf:'worker',
-            category:'creatures',
+            //category:'creatures',
             icon:[0,0],
             tick:function(me,tick)
 		    {  
@@ -48,15 +48,12 @@ G.AddData({
 
                             if (golem != undefined) //Counter an error
                             {
-                                if (golem.type == 'mud') //Check that the current golem is compatible
-                                {
-                                    golem.lifetime+=Math.random() * 2;
+                                golem.lifetime+=Math.random() * 2;
 
-                                    if (golem.lifetime >= golem.maxLife) //Golem lived their life
-                                    {
-                                        G.lose(me.name, 1, 'golem death');
-                                        toRemove.push(golemId);
-                                    }
+                                if (golem.lifetime >= golem.maxLife) //Golem lived their life
+                                {
+                                    G.lose(me.name, 1, 'golem death');
+                                    toRemove.push(golemId);
                                 }
                             }
                         }
@@ -69,51 +66,6 @@ G.AddData({
                 }
             }
         });
-
-        //Clay golem ressource
-        new G.Res({
-            name:'clay golem',
-            desc:'[clay golem] made from [clay].//[clay golem] make an addition to your [worker,Workforce].//[clay golem] dies after a certain amount of time.',
-            //startWith:5,
-            //visible:true,
-            partOf:'worker',
-            category:'creatures',
-            icon:[0,0],
-            tick:function(me,tick)
-		    {  
-                if (me.amount>0)
-			    {
-                    if (tick%1==0) //Every second
-                    {
-                        var toRemove = [];
-
-                        for (let golemId = 0; golemId < GM.golems.length; golemId++) {
-                            const golem = GM.golems[golemId];
-
-                            if (golem != undefined) //Counter an error
-                            {
-                                if (golem.type == 'clay') //Check that the current golem is compatible
-                                {
-                                    golem.lifetime+=Math.random() * 2;
-
-                                    if (golem.lifetime >= golem.maxLife) //Golem lived their life
-                                    {
-                                        G.lose(me.name, 1, 'golem death');
-                                        toRemove.push(golemId);
-                                    }
-                                }
-                            }
-                        }
-
-                        for (let i = 0; i < toRemove.length; i++) {
-                            const id = toRemove[i]; //Remove the data from the list
-                            delete GM.golems[id];
-                        }
-                    }
-                }
-            }
-        });
-
 
         ///Mod custom elements
 
@@ -121,16 +73,7 @@ G.AddData({
 
         GM.golems = [];
 
-        GM.getGolems=function(type) {
-            var golems = [];
-            GM.golems.forEach(golem => {
-                if (golem.type == type) golems.push(golem);
-            });
-            return golems;
-        }
-
         GM.GolemData=function(data) {
-            this.type='';
             this.maxLife=0;
             this.lifetime=0.0;
 
@@ -138,32 +81,18 @@ G.AddData({
             GM.golems.push(this);
         }
 
-        let currentTick = 0;
-
         GM.update=function() {
-            //var mudGolemAmount = G.getRes('muddy golem').amount;
-            var mudGolemAmount = 0;
-            var clayGolemAmount = G.getRes('clay golem').amount;
+            var golemAmount = G.getRes('golem').amount;
             var golemDataLength = GM.golems.length;
 
-            if (golemDataLength < mudGolemAmount + clayGolemAmount)
+            if (golemDataLength < golemAmount)
             {
-                /*for (let i = 0; i < mudGolemAmount - GM.getGolems('mud').length; i++) {
+                for (let i = 0; i < golemAmount - GM.golems.length; i++) {
                     new GM.GolemData({
-                        type:'mud',
-                        maxLife:getRandomInt(year, year+10),
+                        maxLife:getRandomInt(year/2, year),
                     });
-                };*/
-
-                for (let i = 0; i < clayGolemAmount - GM.getGolems('clay').length; i++) {
-                    new GM.GolemData({
-                        type:'clay',
-                        maxLife:getRandomInt(year/2, (year/2) + 10),
-                    });
-                };
+                }
             }
-
-            currentTick++;
         }
 
         setInterval(GM.update, 10); //Loop update every 10 ms
