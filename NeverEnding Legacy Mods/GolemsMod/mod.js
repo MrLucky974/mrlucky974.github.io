@@ -26,7 +26,7 @@ G.AddData({
             side: []
         };
 
-        //Mud golem ressource
+        //Golem ressource
         new G.Res({
             name:'golem',
             desc:'[golem] made from [mud] or [clay].//[mud golem] make an addition to your [worker,Workforce].//[golem] dies after a certain amount of time.',
@@ -48,7 +48,7 @@ G.AddData({
 
                             if (golem != undefined) //Counter an error
                             {
-                                golem.lifetime+=Math.random() * 2;
+                                golem.lifetime+=Math.random() * 2; //Increments a random amount to the lifetime
 
                                 if (golem.lifetime >= golem.maxLife) //Golem lived their life
                                 {
@@ -70,14 +70,12 @@ G.AddData({
         G.getDict('artisan').modes['mud golem']={
             name:'Make golem (mud)',
             desc:'10 [mud] into 1 [golem].',
-            //req:{'hot sauce preparing':true},
             use:{'knapped tools':1}
         };
 
         G.getDict('artisan').modes['clay golem']={
             name:'Make golem (clay)',
             desc:'20 [clay] into 1 [golem].',
-            //req:{'hot sauce preparing':true},
             use:{'knapped tools':1}
         };
 
@@ -98,7 +96,6 @@ G.AddData({
         });
 
         ///Mod custom elements
-
         GM = {}; //Short term for golem mod
 
         GM.golems = [];
