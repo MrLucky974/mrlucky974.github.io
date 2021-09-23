@@ -45,7 +45,7 @@ G.AddData({
 		    {  
                 if (me.amount>0)
 			    {
-                    if (tick % 1) 
+                    if (tick%1==0) 
                     {
                         var golemAmount = M.golems.length;
                         if (golemAmount > me.amount) 
