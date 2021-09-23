@@ -28,10 +28,10 @@ G.AddData({
 
         //Mud golem ressource
         new G.Res({
-            name:'muddy golem',
-            desc:'[muddy golem] made from [mud].//[muddy golem] make an addition to your [worker,Workforce].//[muddy golem] dies after a certain amount of time.',
+            name:'mud golem',
+            desc:'[mud golem] made from [mud].//[mud golem] make an addition to your [worker,Workforce].//[mud golem] dies after a certain amount of time.',
             //startWith:5,
-            visible:true,
+            //visible:true,
             partOf:'worker',
             category:'creatures',
             icon:[0,0],
@@ -39,20 +39,20 @@ G.AddData({
 		    {  
                 if (me.amount>0)
 			    {
-                    if (tick%1==0) 
+                    if (tick%1==0) //Every second
                     {
                         var toRemove = [];
 
                         for (let golemId = 0; golemId < GM.golems.length; golemId++) {
                             const golem = GM.golems[golemId];
 
-                            if (golem != undefined)
+                            if (golem != undefined) //Counter an error
                             {
-                                if (golem.type == 'mud')
+                                if (golem.type == 'mud') //Check that the current golem is compatible
                                 {
                                     golem.lifetime+=Math.random() * 2;
 
-                                    if (golem.lifetime >= golem.maxLife) 
+                                    if (golem.lifetime >= golem.maxLife) //Golem lived their life
                                     {
                                         G.lose(me.name, 1, 'golem death');
                                         toRemove.push(golemId);
@@ -62,7 +62,7 @@ G.AddData({
                         }
 
                         for (let i = 0; i < toRemove.length; i++) {
-                            const id = toRemove[i];
+                            const id = toRemove[i]; //Remove the data from the list
                             delete GM.golems[id];
                         }
                     }
@@ -75,7 +75,7 @@ G.AddData({
             name:'clay golem',
             desc:'[clay golem] made from [clay].//[clay golem] make an addition to your [worker,Workforce].//[clay golem] dies after a certain amount of time.',
             //startWith:5,
-            visible:true,
+            //visible:true,
             partOf:'worker',
             category:'creatures',
             icon:[0,0],
@@ -127,7 +127,7 @@ G.AddData({
                 if (golem.type == type) golems.push(golem);
             });
             return golems;
-        };
+        }
 
         GM.GolemData=function(data) {
             this.type='';
@@ -136,7 +136,7 @@ G.AddData({
 
             for (var i in data) this[i]=data[i];
             GM.golems.push(this);
-        };
+        }
 
         let currentTick = 0;
 
@@ -164,9 +164,9 @@ G.AddData({
             }
 
             currentTick++;
-        };
+        }
 
-        setInterval(GM.update, 1); //Loop update every 1 ms
+        setInterval(GM.update, 10); //Loop update every 10 ms
     }
 
 });
