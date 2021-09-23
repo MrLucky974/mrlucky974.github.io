@@ -68,15 +68,15 @@ G.AddData({
         });
 
         G.getDict('artisan').modes['mud golem']={
-            name:'Make hot sauce',
+            name:'Make golem (mud)',
             desc:'10 [mud] into 1 [golem].',
             //req:{'hot sauce preparing':true},
             use:{'knapped tools':1}
         };
 
         G.getDict('artisan').modes['clay golem']={
-            name:'Make hot sauce',
-            desc:'20 [mud] into 1 [golem].',
+            name:'Make golem (clay)',
+            desc:'20 [clay] into 1 [golem].',
             //req:{'hot sauce preparing':true},
             use:{'knapped tools':1}
         };
