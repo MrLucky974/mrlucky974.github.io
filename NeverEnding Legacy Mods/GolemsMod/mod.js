@@ -9,7 +9,7 @@ const year = 365;
 G.AddData({
     name:'Golems',
     author:'Luckius_',
-    desc:'A mod that adds the golem, new workers.',
+    desc:'A mod that adds the golem.',
     engineVersion:1,
     manifest: 0,
     requires:['Default dataset*'],
@@ -81,6 +81,7 @@ G.AddData({
             name:'golems',
             desc:'[golems] are creatures made of inorganic materials in which life has been deposited.//They can be made of [clay] or [mud] by an [artisan].',
             //startWith:5,
+            icon:[0,0],
             visible:true,
             partOf:'worker',
         });
