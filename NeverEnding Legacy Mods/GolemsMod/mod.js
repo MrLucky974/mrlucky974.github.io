@@ -28,8 +28,8 @@ G.AddData({
         M.golems = []
 
         M.GolemData=function(data) {
-            this.type = '';
-            this.maxLife = maxLife;
+            this.type='';
+            this.maxLife=0;
             this.lifetime=0;
 
             for (var i in obj) this[i]=obj[i];
