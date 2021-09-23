@@ -57,12 +57,16 @@ G.AddData({
 
                         for (let golemId = 0; golemId < M.golems.length; golemId++) {
                             const golem = M.golems[golemId];
-                            golem.lifetime++;
 
-                            if (golem.lifetime >= golem.maxLife) 
+                            if (golem != undefined)
                             {
-                                G.lose(me.name, 1, 'golem death');
-                                toRemove.push(golemId);
+                                golem.lifetime++;
+
+                                if (golem.lifetime >= golem.maxLife) 
+                                {
+                                    G.lose(me.name, 1, 'golem death');
+                                    toRemove.push(golemId);
+                                }
                             }
                         }
 
