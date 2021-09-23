@@ -53,6 +53,8 @@ G.AddData({
                             new M.GolemData(20);
                         }
 
+                        var toRemove = [];
+
                         for (let golemId = 0; golemId < golemAmount; golemId++) {
                             const golem = M.golems[golemId];
                             golem.lifetime++;
@@ -60,8 +62,13 @@ G.AddData({
                             if (golem.lifetime >= golem.maxLife) 
                             {
                                 G.lose(me.name, 1, 'golem death');
-                                delete M.golems[golemId];
+                                toRemove.push(golemId);
                             }
+                        }
+
+                        for (let i = 0; i < toRemove.length; i++) {
+                            const id = toRemove[i];
+                            delete M.golems[id];
                         }
                     }
                 }
