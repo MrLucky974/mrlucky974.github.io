@@ -4,6 +4,8 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
+const year = 365;
+
 G.AddData({
     name:'Golems',
     author:'Luckius_',
@@ -27,6 +29,14 @@ G.AddData({
 
         M.golems = []
 
+        M.getGolems=function(type) {
+            var golems = [];
+            M.golems.forEach(golem => {
+                if (golem.type == type) golems.push(golem);
+            });
+            return golems;
+        }
+
         M.GolemData=function(data) {
             this.type='';
             this.maxLife=0;
@@ -40,24 +50,24 @@ G.AddData({
 
         M.update=function() {
             var mudGolemAmount = G.getRes('mud golem').amount;
-            //var clayGolemAmount = G.getRes('clay golem').amount;
+            var clayGolemAmount = G.getRes('clay golem').amount;
             var golemDataLength = M.golems.length;
 
-            if (golemDataLength < mudGolemAmount)
+            if (golemDataLength < mudGolemAmount + clayGolemAmount)
             {
-                for (let i = 0; i < mudGolemAmount; i++) {
+                for (let i = 0; i < mudGolemAmount - M.getGolems('mud').length; i++) {
                     new M.GolemData({
                         type:'mud',
-                        maxLife:getRandomInt(365, 385),
+                        maxLife:getRandomInt(year, year+10),
                     });
                 };
 
-                /*for (let i = 0; i < clayGolemAmount; i++) {
+                for (let i = 0; i < clayGolemAmount - M.getGolems('clay').length; i++) {
                     new M.GolemData({
                         type:'clay',
-                        maxLife:20,
+                        maxLife:getRandomInt(year/2, (year/2) + 10),
                     });
-                }*/
+                };
             }
             
             //if (currentTick%250==0) console.log('mod update');
@@ -89,6 +99,50 @@ G.AddData({
                             if (golem != undefined)
                             {
                                 if (golem.type == 'mud')
+                                {
+                                    golem.lifetime+=Math.random() * 2;
+
+                                    if (golem.lifetime >= golem.maxLife) 
+                                    {
+                                        G.lose(me.name, 1, 'golem death');
+                                        toRemove.push(golemId);
+                                    }
+                                }
+                            }
+                        }
+
+                        for (let i = 0; i < toRemove.length; i++) {
+                            const id = toRemove[i];
+                            delete M.golems[id];
+                        }
+                    }
+                }
+            }
+        });
+
+        //Clay golem
+        new G.Res({
+            name:'clay golem',
+            desc:'[clay golem, Golems] made from clay.//[clay golem, Golems] make are an addition to your [worker,workforce].//[clay golem, Golems] dies after a certain amount of time.',
+            //startWith:5,
+            visible:true,
+            partOf:'worker',
+            category:'golems',
+            icon:[0,0],
+            tick:function(me,tick)
+		    {  
+                if (me.amount>0)
+			    {
+                    if (tick%1==0) 
+                    {
+                        var toRemove = [];
+
+                        for (let golemId = 0; golemId < M.golems.length; golemId++) {
+                            const golem = M.golems[golemId];
+
+                            if (golem != undefined)
+                            {
+                                if (golem.type == 'clay')
                                 {
                                     golem.lifetime+=Math.random() * 2;
 
