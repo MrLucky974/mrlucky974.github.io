@@ -27,11 +27,39 @@ G.AddData({
 
         M.golems = []
 
-        M.GolemData=function(maxLife) {
+        M.GolemData=function(data) {
+            this.type = '';
             this.maxLife = maxLife;
             this.lifetime=0;
+
+            for (var i in obj) this[i]=obj[i];
             M.golems.push(this);
         }
+
+        M.update=function() {
+            var mudGolemAmount = G.getRes('mud golem').amount;
+            //var clayGolemAmount = G.getRes('clay golem').amount;
+            var golemDataLength = M.golems.length;
+
+            if (golemDataLength < mudGolemAmount)
+            {
+                for (let i = 0; i < mudGolemAmount; i++) {
+                    new M.GolemData({
+                        type:'mud',
+                        maxLife:20,
+                    });
+                };
+
+                /*for (let i = 0; i < clayGolemAmount; i++) {
+                    new M.GolemData({
+                        type:'clay',
+                        maxLife:20,
+                    });
+                }*/
+            }
+        }
+
+        setInterval(M.update, 10); //Loop update every 10 ms
 
         new G.Res({
             name:'mud golem',
@@ -47,12 +75,6 @@ G.AddData({
 			    {
                     if (tick%1==0) 
                     {
-                        var golemAmount = M.golems.length;
-                        if (golemAmount < me.amount)
-                        {
-                            new M.GolemData(20);
-                        }
-
                         var toRemove = [];
 
                         for (let golemId = 0; golemId < M.golems.length; golemId++) {
@@ -60,12 +82,15 @@ G.AddData({
 
                             if (golem != undefined)
                             {
-                                golem.lifetime++;
-
-                                if (golem.lifetime >= golem.maxLife) 
+                                if (golem.type == 'mud')
                                 {
-                                    G.lose(me.name, 1, 'golem death');
-                                    toRemove.push(golemId);
+                                    golem.lifetime++;
+
+                                    if (golem.lifetime >= golem.maxLife) 
+                                    {
+                                        G.lose(me.name, 1, 'golem death');
+                                        toRemove.push(golemId);
+                                    }
                                 }
                             }
                         }
