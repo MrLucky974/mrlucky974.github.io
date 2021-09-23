@@ -23,26 +23,16 @@ G.AddData({
         G.resCategories['creatures'] = {
             name: 'Creatures',
             base: [],
-            side: ['golems']
+            side: []
         };
 
-        //Golems group
-        new G.Res({
-            name:'golems',
-            desc:'[golems] are creatures made of inorganic materials in which life has been deposited.//They can be made of [clay] or [mud] by an [artisan].',
-            //startWith:5,
-            icon:[0,0],
-            visible:true,
-            partOf:'worker'
-        });
-
         //Mud golem ressource
-        /*new G.Res({
+        new G.Res({
             name:'muddy golem',
             desc:'[muddy golem] made from [mud].//[muddy golem] make an addition to your [worker,Workforce].//[muddy golem] dies after a certain amount of time.',
             //startWith:5,
             visible:false,
-            partOf:'golems',
+            partOf:'worker',
             category:'creatures',
             icon:[0,0],
             tick:function(me,tick)
@@ -78,7 +68,7 @@ G.AddData({
                     }
                 }
             }
-        });*/
+        });
 
         //Clay golem ressource
         new G.Res({
@@ -86,7 +76,7 @@ G.AddData({
             desc:'[clay golem] made from [clay].//[clay golem] make an addition to your [worker,Workforce].//[clay golem] dies after a certain amount of time.',
             //startWith:5,
             visible:false,
-            partOf:'golems',
+            partOf:'worker',
             category:'creatures',
             icon:[0,0],
             tick:function(me,tick)
@@ -159,14 +149,14 @@ G.AddData({
             if (golemDataLength < mudGolemAmount + clayGolemAmount)
             {
                 /*for (let i = 0; i < mudGolemAmount - GM.getGolems('mud').length; i++) {
-                    new M.GolemData({
+                    new GM.GolemData({
                         type:'mud',
                         maxLife:getRandomInt(year, year+10),
                     });
                 };*/
 
                 for (let i = 0; i < clayGolemAmount - GM.getGolems('clay').length; i++) {
-                    new M.GolemData({
+                    new GM.GolemData({
                         type:'clay',
                         maxLife:getRandomInt(year/2, (year/2) + 10),
                     });
