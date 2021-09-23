@@ -20,8 +20,8 @@ G.AddData({
     func:function() {
 
         //Golems category
-        G.resCategories['golems'] = {
-            name: 'Golems',
+        G.resCategories['creatures'] = {
+            name: 'Creatures',
             base: [],
             side: ['golems']
         };
@@ -38,12 +38,12 @@ G.AddData({
 
         //Mud golem ressource
         new G.Res({
-            name:'mud golem',
-            desc:'[mud golem, Golems] made from [mud].//[mud golem, Golems] make an addition to your [worker,Workforce].//[mud golem, Golems] dies after a certain amount of time.',
+            name:'muddy golem',
+            desc:'[muddy golem] made from [mud].//[muddy golem] make an addition to your [worker,Workforce].//[muddy golem] dies after a certain amount of time.',
             //startWith:5,
             visible:false,
             partOf:'golems',
-            category:'golems',
+            category:'creatures',
             icon:[0,0],
             tick:function(me,tick)
 		    {  
@@ -83,11 +83,11 @@ G.AddData({
         //Clay golem ressource
         new G.Res({
             name:'clay golem',
-            desc:'[clay golem, Golems] made from [clay].//[clay golem, Golems] make an addition to your [worker,Workforce].//[clay golem, Golems] dies after a certain amount of time.',
+            desc:'[clay golem] made from [clay].//[clay golem] make an addition to your [worker,Workforce].//[clay golem] dies after a certain amount of time.',
             //startWith:5,
             visible:false,
             partOf:'golems',
-            category:'golems',
+            category:'creatures',
             icon:[0,0],
             tick:function(me,tick)
 		    {  
@@ -151,7 +151,7 @@ G.AddData({
         let currentTick = 0;
 
         GM.update=function() {
-            var mudGolemAmount = G.getRes('mud golem').amount;
+            var mudGolemAmount = G.getRes('muddy golem').amount;
             var clayGolemAmount = G.getRes('clay golem').amount;
             var golemDataLength = GM.golems.length;
 
@@ -176,7 +176,6 @@ G.AddData({
         };
 
         setInterval(GM.update, 1); //Loop update every 1 ms
-
     }
 
 });
