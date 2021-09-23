@@ -50,13 +50,12 @@ G.AddData({
                         var golemAmount = M.golems.length;
                         if (golemAmount < me.amount)
                         {
-                            var randMaxLife = getRandomInt(182, 365)
-                            new M.GolemData(randMaxLife);
+                            new M.GolemData(20);
                         }
 
                         for (let golemId = 0; golemId < golemAmount; golemId++) {
                             const golem = M.golems[golemId];
-                            golem.lifetime++;
+                            M.golems[golemId].lifetime += 1;
 
                             if (golem.lifetime >= golem.maxLife) 
                             {
