@@ -36,6 +36,8 @@ G.AddData({
             M.golems.push(this);
         }
 
+        let currentTick = 0;
+
         M.update=function() {
             var mudGolemAmount = G.getRes('mud golem').amount;
             //var clayGolemAmount = G.getRes('clay golem').amount;
@@ -46,7 +48,7 @@ G.AddData({
                 for (let i = 0; i < mudGolemAmount; i++) {
                     new M.GolemData({
                         type:'mud',
-                        maxLife:20,
+                        maxLife:getRandomInt(15, 25),
                     });
                 };
 
@@ -57,9 +59,13 @@ G.AddData({
                     });
                 }*/
             }
+            
+            if (currentTick%500==0) console.log('mod update');
+
+            currentTick++;
         }
 
-        setInterval(M.update, 10); //Loop update every 10 ms
+        setInterval(M.update, 1); //Loop update every 1 ms
 
         new G.Res({
             name:'mud golem',
