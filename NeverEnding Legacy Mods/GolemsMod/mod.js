@@ -30,7 +30,7 @@ G.AddData({
         M.GolemData=function(data) {
             this.type='';
             this.maxLife=0;
-            this.lifetime=0;
+            this.lifetime=0.0;
 
             for (var i in data) this[i]=data[i];
             M.golems.push(this);
