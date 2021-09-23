@@ -55,7 +55,7 @@ G.AddData({
 
                         var toRemove = [];
 
-                        for (let golemId = 0; golemId < golemAmount; golemId++) {
+                        for (let golemId = 0; golemId < M.golems.length; golemId++) {
                             const golem = M.golems[golemId];
                             golem.lifetime++;
 
