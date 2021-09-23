@@ -37,7 +37,7 @@ G.AddData({
         });
 
         //Mud golem ressource
-        new G.Res({
+        /*new G.Res({
             name:'muddy golem',
             desc:'[muddy golem] made from [mud].//[muddy golem] make an addition to your [worker,Workforce].//[muddy golem] dies after a certain amount of time.',
             //startWith:5,
@@ -78,7 +78,7 @@ G.AddData({
                     }
                 }
             }
-        });
+        });*/
 
         //Clay golem ressource
         new G.Res({
@@ -151,18 +151,19 @@ G.AddData({
         let currentTick = 0;
 
         GM.update=function() {
-            var mudGolemAmount = G.getRes('muddy golem').amount;
+            //var mudGolemAmount = G.getRes('muddy golem').amount;
+            var mudGolemAmount = 0;
             var clayGolemAmount = G.getRes('clay golem').amount;
             var golemDataLength = GM.golems.length;
 
             if (golemDataLength < mudGolemAmount + clayGolemAmount)
             {
-                for (let i = 0; i < mudGolemAmount - GM.getGolems('mud').length; i++) {
+                /*for (let i = 0; i < mudGolemAmount - GM.getGolems('mud').length; i++) {
                     new M.GolemData({
                         type:'mud',
                         maxLife:getRandomInt(year, year+10),
                     });
-                };
+                };*/
 
                 for (let i = 0; i < clayGolemAmount - GM.getGolems('clay').length; i++) {
                     new M.GolemData({
