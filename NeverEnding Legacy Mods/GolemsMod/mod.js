@@ -55,7 +55,7 @@ G.AddData({
 
                         for (let golemId = 0; golemId < golemAmount; golemId++) {
                             const golem = M.golems[golemId];
-                            M.golems[golemId].lifetime += 1;
+                            golem.lifetime++;
 
                             if (golem.lifetime >= golem.maxLife) 
                             {
