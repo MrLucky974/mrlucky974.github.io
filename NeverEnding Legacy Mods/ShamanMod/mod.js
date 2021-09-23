@@ -62,7 +62,7 @@ G.AddData({
             name:'zombie',
             desc:'[zombie,Zombies] are [corpse]s bringed back to life by a [shaman] using [necromancy].//Zombies make are an addition to your [worker,workforce].<>Those who play with the power of life and death should be warned that one day themselves they could be the toy of their own grief...',
             //startWith:5,
-            visible:true,
+            visible:false,
             partOf:'worker',
             category:'demog',
             icon:[1,0,'shamanIconSheet'],

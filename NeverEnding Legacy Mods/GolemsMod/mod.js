@@ -72,27 +72,27 @@ G.AddData({
         //Golems category
         G.resCategories['golems'] = {
             name: 'Golems',
-            base: ['mud golem', 'clay golem'],
-            side: ['golems']
+            base: ['clay golem', 'mud golem'],
+            side: []
         };
 
         //Golems group
-        new G.Res({
+        /*new G.Res({
             name:'golems',
             desc:'[golems] are creatures made of inorganic materials in which life has been deposited.//They can be made of [clay] or [mud] by an [artisan].',
             //startWith:5,
             icon:[0,0],
             visible:true,
             partOf:'worker',
-        });
+        });*/
 
         //Mud golem ressource
         new G.Res({
             name:'mud golem',
             desc:'[mud golem, Golems] made from [mud].//[mud golem, Golems] make an addition to your [worker,Workforce].//[mud golem, Golems] dies after a certain amount of time.',
             //startWith:5,
-            visible:true,
-            partOf:'golems',
+            visible:false,
+            partOf:'worker',
             //category:'golems',
             icon:[0,0],
             tick:function(me,tick)
@@ -135,8 +135,8 @@ G.AddData({
             name:'clay golem',
             desc:'[clay golem, Golems] made from [clay].//[clay golem, Golems] make an addition to your [worker,Workforce].//[clay golem, Golems] dies after a certain amount of time.',
             //startWith:5,
-            visible:true,
-            partOf:'golems',
+            visible:false,
+            partOf:'worker',
             //category:'golems',
             icon:[0,0],
             tick:function(me,tick)
