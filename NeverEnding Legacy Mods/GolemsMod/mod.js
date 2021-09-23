@@ -90,7 +90,7 @@ G.AddData({
                             {
                                 if (golem.type == 'mud')
                                 {
-                                    golem.lifetime+=randomFloor(Math.random * 2);
+                                    golem.lifetime+=Math.random * 2;
 
                                     if (golem.lifetime >= golem.maxLife) 
                                     {
