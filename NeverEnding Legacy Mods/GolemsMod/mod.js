@@ -67,6 +67,36 @@ G.AddData({
             }
         });
 
+        G.getDict('artisan').modes['mud golem']={
+            name:'Make hot sauce',
+            desc:'10 [mud] into 1 [golem].',
+            //req:{'hot sauce preparing':true},
+            use:{'knapped tools':1}
+        };
+
+        G.getDict('artisan').modes['clay golem']={
+            name:'Make hot sauce',
+            desc:'20 [mud] into 1 [golem].',
+            //req:{'hot sauce preparing':true},
+            use:{'knapped tools':1}
+        };
+
+        G.getDict('artisan').effects.push({
+            type:'convert',
+            from:{'mud':10},
+            into:{'golem':1},
+            every:20,
+            mode:'mud golem'
+        });
+
+        G.getDict('artisan').effects.push({
+            type:'convert',
+            from:{'clay':20},
+            into:{'golem':1},
+            every:10,
+            mode:'clay golem'
+        });
+
         ///Mod custom elements
 
         GM = {}; //Short term for golem mod
