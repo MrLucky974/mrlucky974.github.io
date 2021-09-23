@@ -48,7 +48,7 @@ G.AddData({
                 for (let i = 0; i < mudGolemAmount; i++) {
                     new M.GolemData({
                         type:'mud',
-                        maxLife:getRandomInt(15, 25),
+                        maxLife:getRandomInt(365, 385),
                     });
                 };
 
@@ -60,7 +60,7 @@ G.AddData({
                 }*/
             }
             
-            if (currentTick%500==0) console.log('mod update');
+            //if (currentTick%250==0) console.log('mod update');
 
             currentTick++;
         }
@@ -69,7 +69,7 @@ G.AddData({
 
         new G.Res({
             name:'mud golem',
-            desc:'[mud golem, Golems] made from mud.//[mud golem, Golems] make are an addition to your [worker,workforce].//Dies after 1 year (365 days).',
+            desc:'[mud golem, Golems] made from mud.//[mud golem, Golems] make are an addition to your [worker,workforce].//[mud golem, Golems] dies after a certain amount of time.',
             //startWith:5,
             visible:true,
             partOf:'worker',
@@ -90,7 +90,7 @@ G.AddData({
                             {
                                 if (golem.type == 'mud')
                                 {
-                                    golem.lifetime++;
+                                    golem.lifetime+=randomFloor(Math.random * 2);
 
                                     if (golem.lifetime >= golem.maxLife) 
                                     {
