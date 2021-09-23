@@ -88,7 +88,7 @@ G.AddData({
         //Mud golem ressource
         new G.Res({
             name:'mud golem',
-            desc:'[mud golem, Golems] made from [mud].//[mud golem, Golems] make are an addition to your [worker,Workforce].//[mud golem, Golems] dies after a certain amount of time.',
+            desc:'[mud golem, Golems] made from [mud].//[mud golem, Golems] make an addition to your [worker,Workforce].//[mud golem, Golems] dies after a certain amount of time.',
             //startWith:5,
             visible:true,
             partOf:'golems',
@@ -132,7 +132,7 @@ G.AddData({
         //Clay golem ressource
         new G.Res({
             name:'clay golem',
-            desc:'[clay golem, Golems] made from [clay].//[clay golem, Golems] make are an addition to your [worker,Workforce].//[clay golem, Golems] dies after a certain amount of time.',
+            desc:'[clay golem, Golems] made from [clay].//[clay golem, Golems] make an addition to your [worker,Workforce].//[clay golem, Golems] dies after a certain amount of time.',
             //startWith:5,
             visible:true,
             partOf:'golems',
