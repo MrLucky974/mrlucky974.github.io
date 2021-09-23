@@ -157,6 +157,24 @@ G.AddData({
             category:'ingredients',
         });
 
+        new G.Res({
+            name:'compost',
+            desc:'[compost] is used to grow farmlands faster.',
+            icon:[],
+            turnToByContext:{/*'eat':{'health':0.0025,'happiness':-0.05},*/ 'decay':{/*'flour':0.9, 'spoiled food':0.1*/}},
+            //partOf:'food',
+            category:'agriculture',
+        });
+
+        new G.Res({
+            name:'manure',
+            desc:'[manure] is the byproduct of animal/human food consumption.',
+            icon:[],
+            turnToByContext:{/*'eat':{'health':0.0025,'happiness':-0.05},*/ 'decay':{'compost':0.7}},
+            //partOf:'food',
+            category:'agriculture',
+        });
+
         ///Dough recipe
         //Adds the new mode
         G.getDict('artisan').modes['dough']= {
@@ -244,7 +262,8 @@ G.AddData({
                 {type:'gather', what:{'vegetable':15}, mode:'vegetables'},
                 {type:'gather', what:{'root':2.5}, chance:1/2, mode:'vegetables'},
                 
-                {type:'mult', value:1.7, req:{'harvest rituals':'on'}}
+                {type:'mult', value:1.7, req:{'harvest rituals':'on'}},
+                {type:'mult', value:1.7, req:{'compost':G.getRes('compost').amount >= 10}}
             ],
             req: {'agriculture': true},
             category: 'production',
