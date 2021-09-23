@@ -32,7 +32,7 @@ G.AddData({
             this.maxLife=0;
             this.lifetime=0;
 
-            for (var i in obj) this[i]=obj[i];
+            for (var i in data) this[i]=data[i];
             M.golems.push(this);
         }
 
