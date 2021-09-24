@@ -6,20 +6,22 @@ G.AddData({
     manifest: 0,
     requires:['Default dataset*'],
     sheets:{
-        'shamanIconSheet': 'https://i.imgur.com/FNkLnN2.png'
+        'shaman': 'https://mrlucky974.github.io/NeverEnding%20Legacy%20Mods/ShamanMod/iconSheet.png'
     },
 
     func:function() {
 
+        //Adds medicine, a item used by the shaman to cure sick and wounded
         new G.Res({
             name:'medicine',
             desc:'[medicine] helps to heal the [sick] and the [wounded].',
-            icon:[6,4],
+            icon:[0,1,'shaman'],
             //turnToByContext:{'decay':{'medicine':0.3,}},
             //partOf:'food',
             category:'food',
         });
 
+        //Adds the shaman, the most important unit from this mod
         new G.Unit({
             name:'shaman',
             desc:'@uses [medicine]s to heal the [sick] and the [wounded] with a greater success rate than the [healer].<>Produce [medicine] by combining [herb]s secret powers and the magic of spirits using [faith].<>',
@@ -31,9 +33,9 @@ G.AddData({
             gizmos: true,
             modes: {
                 'heal':{name:'Heal', icon:[4,5], desc:'Heal the [sick] and the [wounded] with [medicine] and 1 [insight].'},
-                'medicine':{name:'Make medicine', icon:[6,4], desc:'Produce 7 [medicine] from 3 [water] and 10 [herb]s.'},
+                'medicine':{name:'Make medicine', icon:[0,1,'shaman'], desc:'Produce 7 [medicine] from 3 [water] and 10 [herb]s.'},
                 'youth':{name:'Cure elders', icon:[5,3], desc:'The [shaman] have a very small chance to cure [elder]s, them becoming [adult]s again.<>Use 20 [medicine], 1 [insight] & 3 [faith].'},
-                'necromancy':{name:'Ressurect corpse', icon:[0,0,'shamanIconSheet'], desc:'Using [necromancy], a [shaman] can ressurect [corpse, dead] people back to life, making a [zombie].<>Use 1 [faith].', req:{'necromancy':true}},
+                'necromancy':{name:'Ressurect corpse', icon:[0,0,'shaman'], desc:'Using [necromancy], a [shaman] can ressurect [corpse, dead] people back to life, making a [zombie].<>Use 1 [faith].', req:{'necromancy':true}},
             },
             effects:[
                 {type:'convert', from:{'sick':1, 'medicine':7, 'insight':1}, into:{'adult':1}, chance:1/2, every:1.5, mode:'heal'},
@@ -47,10 +49,11 @@ G.AddData({
             priority:5,
         });
 
+        //Adds necromancy technology
         new G.Tech({
             name:'necromancy',
             desc:'@unlocks new options for [shaman]s<>',
-            icon:[0,0,'shamanIconSheet'],
+            icon:[0, 0, 'shaman'],
             cost:{'insight':10, 'faith':1},
             req:{'ritualism':true, 'burial':true, 'healing':true},
             effects:[
@@ -58,6 +61,7 @@ G.AddData({
             chance:2,
         });
 
+        //Adds the zombie
         new G.Res({
             name:'zombie',
             desc:'[zombie,Zombies] are [corpse]s bringed back to life by a [shaman] using [necromancy].//Zombies make are an addition to your [worker,workforce].<>Those who play with the power of life and death should be warned that one day themselves they could be the toy of their own grief...',
@@ -65,7 +69,7 @@ G.AddData({
             //visible:false,
             partOf:'worker',
             category:'demog',
-            icon:[1,0,'shamanIconSheet'],
+            icon:[1, 0, 'shaman'],
             tick:function(me,tick)
 		    {  
                 if (me.amount>0)
@@ -107,6 +111,10 @@ G.AddData({
                 }   
             }
         });
+
+        //Creatures category
+        if ('creatures' in G.resCategories) G.resCategories['creatures'].base.push('zombie'); //Check for a creatures category
+        else G.resCategories['creatures'] = {name: 'Creatures', base: ['zombie'], side: []}; //If this category doesn't exists, create one, and put the golem in there
 
     }
 

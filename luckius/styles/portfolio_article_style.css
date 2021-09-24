@@ -4,3 +4,8 @@ body {
     background-color: rgb(20, 19, 26);
     font-family: 'Open Sans', sans-serif;
 }
+
+.center {
+    text-align: center;
+    color: aliceblue;
+}

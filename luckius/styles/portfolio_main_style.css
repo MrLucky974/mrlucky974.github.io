@@ -30,14 +30,13 @@ body {
     width: 100%;
     float: left;
     margin-bottom: 10px;
-    position: fixed;
     top: 0;
     left: 0;
 }
 
 .project {
     position: relative;
-    top: 110px;
+    top: 50px;
     text-align: center;
     color: aliceblue;
 }
@@ -48,8 +47,8 @@ body {
 }
 
 .articles {
-    padding-top: 20px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     width: 50%;
 }
 

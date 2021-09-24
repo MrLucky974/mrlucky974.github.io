@@ -14,14 +14,14 @@ G.AddData({
     manifest: 0,
     requires:['Default dataset*'],
     sheets:{
-        
+        'golems': 'https://mrlucky974.github.io/NeverEnding%20Legacy%20Mods/GolemsMod/iconSheet.png'
     },
 
     func:function() {
 
         //Creatures category
         if ('creatures' in G.resCategories) G.resCategories['creatures'].base.push('golem'); //Check for a creatures category
-        else G.resCategories['creatures'] = {name: 'Creatures',base: ['golem'],side: []}; //If this category doesn't exists, create one, and put the golem in there
+        else G.resCategories['creatures'] = {name: 'Creatures', base: ['golem'], side: []}; //If this category doesn't exists, create one, and put the golem in there
 
         //Golem ressource
         new G.Res({
@@ -31,7 +31,7 @@ G.AddData({
             //visible:true,
             partOf:'worker',
             //category:'creatures',
-            icon:[0,0],
+            icon:[0, 0, 'golems'],
             tick:function(me,tick)
 		    {  
                 if (me.amount>0)
@@ -67,12 +67,14 @@ G.AddData({
         G.getDict('artisan').modes['mud golem']={
             name:'Make golem (mud)',
             desc:'10 [mud] into 1 [golem].',
+            icon:[0, 1, 'golems'],
             use:{'knapped tools':1}
         };
 
         G.getDict('artisan').modes['clay golem']={
             name:'Make golem (clay)',
             desc:'20 [clay] into 1 [golem].',
+            icon:[1, 1, 'golems'],
             use:{'knapped tools':1}
         };
 
