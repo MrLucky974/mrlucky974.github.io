@@ -19,12 +19,9 @@ G.AddData({
 
     func:function() {
 
-        //Golems category
-        G.resCategories['creatures'] = {
-            name: 'Creatures',
-            base: ['golem'],
-            side: []
-        };
+        //Creatures category
+        if ('creatures' in G.resCategories) G.resCategories['creatures'].base.push('golem'); //Check for a creatures category
+        else G.resCategories['creatures'] = {name: 'Creatures',base: ['golem'],side: []}; //If this category doesn't exists, create one, and put the golem in there
 
         //Golem ressource
         new G.Res({
