@@ -6,7 +6,7 @@ G.AddData({
     manifest: 0,
     requires:['Default dataset*'],
     sheets:{
-
+        'agricultura': 'https://mrlucky974.github.io/NeverEnding%20Legacy%20Mods/AgriculturaMod/iconSheet.png'
     },
 
     func:function() {
@@ -32,7 +32,7 @@ G.AddData({
         new G.Res({
             name:'vegetable',
             desc:'[vegetable, Vegetables] are grown by planting [root]s found in nature.',
-            icon:[],
+            icon:[0,1,'agricultura'],
             turnToByContext:{'eat':{'health':0.02,'happiness':0.02}, 'decay':{'spoiled food':1}}, //When decaying, always transform to spoiled food
             partOf:'food',
             category:'food',
@@ -51,7 +51,7 @@ G.AddData({
         new G.Res({
             name:'seed',
             desc:'[seed]s grow fruits and cereals.',
-            icon:[],
+            icon:[0,0,'agricultura'],
             turnToByContext:{'eating':{'health':0.005,'happiness':-0.03}, decay:{'seed':1}}, //Seeds can't spoil
             partOf:'food',
             tick:function(me,tick)
@@ -97,7 +97,7 @@ G.AddData({
         new G.Res({
             name:'root',
             desc:'[root]s are found in the wild, you can grow a lot of different vegetables.',
-            icon:[],
+            icon:[3,1,'agricultura'],
             turnToByContext:{'eating':{'health':0.005,'happiness':-0.005}, 'decay':{'root':0.4, 'spoiled food':0.6}},
             partOf:'food',
             tick:function(me,tick)
@@ -143,7 +143,7 @@ G.AddData({
         new G.Res({
             name:'flour',
             desc:'[flour] is produced from the conversion of [cereal]s in the [mill].',
-            icon:[],
+            icon:[1,0,'agricultura'],
             turnToByContext:{'eat':{'health':0.0025,'happiness':-0.05}, 'decay':{'flour':0.9, 'spoiled food':0.1}},
             partOf:'food',
             category:'ingredients',
@@ -153,7 +153,7 @@ G.AddData({
         new G.Res({
             name:'dough',
             desc:'[dough] is made by an [artisan] from [flour] and [water].//Used to make [bread] on the [furnace].',
-            icon:[],
+            icon:[2,0,'agricultura'],
             turnToByContext:{'eat':{'health':0.05,'happiness':-0.007}, 'decay':{'dough':0.1, 'spoiled food':0.9}},
             partOf:'food',
             category:'ingredients',
@@ -162,7 +162,7 @@ G.AddData({
         new G.Res({
             name:'compost',
             desc:'[compost] is used to grow farmlands faster.',
-            icon:[],
+            icon:[2,1,'agricultura'],
             turnToByContext:{/*'eat':{'health':0.0025,'happiness':-0.05},*/ 'decay':{/*'flour':0.9, 'spoiled food':0.1*/}},
             //partOf:'food',
             category:'agriculture',
@@ -171,7 +171,7 @@ G.AddData({
         new G.Res({
             name:'manure',
             desc:'[manure] is the byproduct of animal/human food consumption.',
-            icon:[],
+            icon:[1,1,'agricultura'],
             turnToByContext:{/*'eat':{'health':0.0025,'happiness':-0.05},*/ 'decay':{'compost':0.7}},
             //partOf:'food',
             category:'agriculture',
@@ -182,6 +182,7 @@ G.AddData({
         G.getDict('artisan').modes['dough']= {
             name:'Make dough', 
             desc:'Turn 3 [flour] and 2 [water]s into 4 [dough].', 
+            icon:[2,0,'agricultura'],
             req:{}, 
             use:{'knapped tools':1}
         };
@@ -237,15 +238,15 @@ G.AddData({
         new G.Unit({
             name: 'farmland',
             desc: '@A [farmland] is build to plant various crops to produce a substainable stock of food, mainly [vegetable]s and [cereal]s.',
-            icon: [14,4],
+            icon: [3,0,'agricultura'],
             cost:{'archaic building materials':100, 'stone tools':1},
             use:{'worker':1, 'land': 1},
 		    upkeep:{'water':0.35},
             gizmos: true,
             modes: {
                 'off': G.MODE_OFF,
-                'any':{name:'Any', icon:[14,4], desc:'Farm using any random [seed] or [root] you have. You may not get optimal results.', use:{'knapped tools':1}},
-                'vegetables':{name:'Farm vegetables', icon:[14,4], desc:'Produce [vegetable]s using [root]s.', use:{'knapped tools':1}},
+                'any':{name:'Any', icon: [3,0,'agricultura'], desc:'Farm using any random [seed] or [root] you have. You may not get optimal results.', use:{'knapped tools':1}},
+                'vegetables':{name:'Farm vegetables', icon:[0,1,'agricultura'], desc:'Produce [vegetable]s using [root]s.', use:{'knapped tools':1}},
                 'cereals':{name:'Farm cereals', icon:[14,4], desc:'Produce [cereal]s using [seed]s.', use:{'knapped tools':1}},
             },
             effects: [
@@ -274,7 +275,7 @@ G.AddData({
         new G.Unit({
             name: 'mill',
             desc: '@A truly wonderful building used to produce [flour] from [cereal]s like wheat.',
-            icon: [],
+            icon: [0,2,'agricultura'],
             cost:{'basic building materials':150, 'stone tools':10},
             use:{'land': 1},
 		    upkeep:{},
@@ -313,7 +314,7 @@ G.AddData({
         new G.Tech({
             name:'agriculture',
             desc:'@unlocks [farmland]s.',
-            icon:[],
+            icon:[1,2,'agricultura'],
             cost:{'insight':15},
             req:{'sedentism':true},
             effects:[],
